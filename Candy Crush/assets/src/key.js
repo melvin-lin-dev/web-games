@@ -13,7 +13,7 @@ function cvsClick(ev) {
             let gem = game_grid[i][j];
 
             // if(i ==  && j == 5) console.log(x >= gem.x)
-            if (x >= gem.x && x <= gem.x + gem.w && y >= gem.y && y <= gem.y + gem.h && !changing) {
+            if (x >= gem.x && x <= gem.x + gem.rw && y >= gem.y && y <= gem.y + gem.h && !changing) {
                 if(gem.type >= 7){
                     if(gem.type == 7){
                         let range = 5;

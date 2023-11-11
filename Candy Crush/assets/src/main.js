@@ -23,35 +23,45 @@ window.onload = () => {
     insEl.style.transform = 'rotateY(0)';
 }
 
+function getLeaderboards(){
+    return localStorage.leaderboards ? JSON.parse(localStorage.leaderboards) : [];
+}
+
 function start(){
     over = false;
 
-    scoreEl.innerHTML = score;
-    count.innerHTML = 3;
-    count.style.opacity = '1';
+    count.style.display = 'block';
 
-    let countInterval = setInterval(()=>{
-        if(count.innerHTML == 0){
-            count.style.opacity = '0';
-            clearInterval(countInterval);
-            setTimeout(()=>{
-                drawBoard();
-                update();
-
-                let timerInterval = setInterval(()=>{
-                    timer--;
-                    document.getElementById('timer').innerHTML = timer;
-
-                    if(!timer){
-                        over = true;
-                        clearInterval(timerInterval);
-                    }
-                }, 1000)
-            },520);
-        }else{
-            count.innerHTML--;
-        }
-    }, 1000);
+    setTimeout(() => {
+        scoreEl.innerHTML = score;
+        count.innerHTML = 3;
+        count.style.opacity = '1';
+    
+        let countInterval = setInterval(()=>{
+            if(count.innerHTML == 0){
+                count.style.opacity = '0';
+                clearInterval(countInterval);
+                setTimeout(()=>{
+                    count.style.display = 'none';
+                    
+                    drawBoard();
+                    update();
+    
+                    let timerInterval = setInterval(()=>{
+                        timer--;
+                        document.getElementById('timer').innerHTML = timer;
+    
+                        if(!timer){
+                            over = true;
+                            clearInterval(timerInterval);
+                        }
+                    }, 1000)
+                },520);
+            }else{
+                count.innerHTML--;
+            }
+        }, 1000);
+    })
 }
 
 function update(){
@@ -64,6 +74,10 @@ function update(){
     }else{
         document.querySelector('.gameover').style.transform = 'scale(1)';
         document.querySelector('.gameover .score').innerHTML = score;
+
+        let leaderboards = getLeaderboards();
+        leaderboards.push({ name: nameEl.innerHTML, score })
+        localStorage.leaderboards = JSON.stringify(leaderboards);
     }
 }
 
@@ -96,10 +110,35 @@ function fixed(num){
 }
 
 function ranking(cmd){
+    const scoreboardEl = document.querySelector('.scoreboard');
+
     if(cmd == 'show'){
-        document.querySelector('.scoreboard').style.transform = 'scale(1) rotate(0deg)';
+        scoreboardEl.style.transform = 'scale(1) rotate(0deg)';
+
+        const leaderboards = getLeaderboards().sort((a, b) => b.score - a.score).slice(0,10);
+        const tbody = scoreboardEl.querySelector('tbody');
+        tbody.innerHTML = '';
+
+        leaderboards.forEach((rank, i) => {
+            const tr = document.createElement('tr');
+            
+            const tdRank = document.createElement('td');
+            tdRank.innerHTML = i + 1;
+
+            const tdName = document.createElement('td');
+            tdName.innerHTML = rank.name;
+
+            const tdScore = document.createElement('td');
+            tdScore.innerHTML = rank.score;
+
+            tr.appendChild(tdRank);
+            tr.appendChild(tdName);
+            tr.appendChild(tdScore);
+
+            tbody.appendChild(tr);
+        });
     }else{
-        document.querySelector('.scoreboard').style.transform = 'scale(0) rotate(90deg)';
+        scoreboardEl.style.transform = 'scale(0) rotate(90deg)';
     }
 }
 
@@ -127,4 +166,7 @@ function restart(){
     gridGem1, gridGem2;
 
     document.getElementById('name').value = '';
+    nameEl.innerHTML = '';
+    scoreEl.innerHTML = '';
+    document.getElementById('timer').innerHTML = timer;
 }

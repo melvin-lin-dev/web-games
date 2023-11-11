@@ -18,7 +18,7 @@ class Gem {
 
         this.type = gem;
 
-        this.tes = false;
+        this.tes = true;
 
         this.destroyed = false;
 
@@ -42,7 +42,7 @@ class Gem {
 
         if (this.tes) {
             ctx.save();
-            ctx.fillRect(this.x, this.y, this.w, this.h);
+            ctx.fillRect(this.x, this.y, this.rw, this.h);
             ctx.restore();
         }
 

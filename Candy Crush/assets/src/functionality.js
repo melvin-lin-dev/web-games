@@ -28,7 +28,6 @@ function change(x1, y1, x2, y2) {
             if (!changeCancel) {
                 game_grid[gridGem1[0]][gridGem1[1]] = gem2;
                 game_grid[gridGem2[0]][gridGem2[1]] = gem1;
-
                 changeCancel = true;
 
                 check();
@@ -78,7 +77,7 @@ function check() {
                             if (x >= 0 && y >= 0 && x < s && y < s) {
                                 let nextGem2 = game_grid[y][x];
 
-                                if (nextGem.type != nextGem2.type) break;
+                                if (nextGem.type != nextGem2.type && nextGem.type <= 6) break;
 
                                 lines.push([y, x]);
                             } else {
@@ -87,7 +86,6 @@ function check() {
                         }
                     }
                 }
-
                 checkLines(dir);
             })
         }
@@ -103,26 +101,14 @@ function checkLines(dir) {
         lines.forEach((line, i) => {
             let gem = game_grid[line[0]][line[1]];
 
-            if (gem == gem1 || gem == gem2) pass = true;
+            if (gem == gem1 || gem == gem2) {
+                pass = true;
+                setTimeout(() => {
+                    pass = false;
+                });
+            }
 
             gem.destroyed = true;
-
-            if(!powerUpActived){
-                if (lines.length == 4) {
-                    if(!called){
-                        if ((dir[0] == 1 && dir[1] == 0) || (dir[0] == -1 && dir[1] == 0)) powerUp.push('horizontal');
-                        else powerUp.push('vertical');
-
-                        called = true;
-                    }
-                } else if (lines.length >= 5) {
-                    if(!called){
-                        powerUp.push('bomb');
-
-                        called = true;
-                    }
-                }
-            }
 
             let animationInterval = setInterval(() => {
                 if (gem.w > 0 || gem.h > 0) {
@@ -133,6 +119,15 @@ function checkLines(dir) {
                 }
             });
         });
+
+        if(!powerUpActived){
+            if (lines.length == 4) {
+                if ((dir[0] == 1 && dir[1] == 0) || (dir[0] == -1 && dir[1] == 0)) powerUp.push('horizontal');
+                else powerUp.push('vertical');
+            } else if (lines.length >= 5) {
+                powerUp.push('bomb');
+            }
+        }
 
         lines = [];
     }
@@ -173,27 +168,29 @@ function checkEmpty() {
 }
 
 function addGems() {
-    if(over) return false;
-
     let addGemInterval = setInterval(() => {
-        for (let col = 0; col < s; col++) {
-            let row = 0;
-            let gem = game_grid[row][col];
-            if (!gem) {
-                let w = cvs.width / s;
-                let h = cvs.height / s;
-                let gem;
-                if (powerUp.length) {
-                    if (powerUp[0] == 'bomb') gem = 7;
-                    if (powerUp[0] == 'vertical') gem = 8;
-                    if (powerUp[0] == 'horizontal') gem = 9;
-
-                    powerUp.splice(0, 1);
-                } else {
-                    gem = rand(0, 6)
+        if(!over){
+            for (let col = 0; col < s; col++) {
+                let row = 0;
+                let gem = game_grid[row][col];
+                if (!gem) {
+                    let w = cvs.width / s;
+                    let h = cvs.height / s;
+                    let gem;
+                    if (powerUp.length) {
+                        if (powerUp[0] == 'bomb') gem = 7;
+                        if (powerUp[0] == 'vertical') gem = 8;
+                        if (powerUp[0] == 'horizontal') gem = 9;
+    
+                        powerUp.shift();
+                    } else {
+                        gem = rand(0, 6)
+                    }
+                    game_grid[row][col] = new Gem(col, row - 1, w, h, gem, 'add');
                 }
-                game_grid[row][col] = new Gem(col, row - 1, w, h, gem, 'add');
             }
+        }else{
+            clearInterval(addGemInterval);
         }
     }, 100);
 
