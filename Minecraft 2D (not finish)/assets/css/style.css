@@ -1,0 +1,254 @@
+* {
+    box-sizing: border-box;
+    font-family: segoe ui;
+    user-select: none;
+}
+
+html, body {
+    margin: auto;
+    overflow: hidden;
+}
+
+.inventory-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+}
+
+.inventory-container.active {
+    background-color: rgba(200, 200, 200, .8);
+    border-radius: 10px;
+    border: 3px outset white;
+    padding: 20px;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.inventory-container > div.main-inventory{
+    margin-left: 23px;
+}
+
+.inventory-container.active > div.main-inventory{
+    margin: 0;
+}
+
+.inventory-container > div:not(.main-inventory){
+    display: none;
+}
+
+.inventory-container.active > div:not(.main-inventory){
+    display: flex;
+}
+
+.inventory-container .main-inventory, .inventory-container .side-inventory {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.inventory-container .slot {
+    width: 60px;
+    height: 60px;
+    border: 6px ridge #aaa;
+    background-color: rgba(100, 90, 80, 1);
+    position: relative;
+}
+
+.inventory-container .slot.active {
+    border-color: #fff;
+}
+
+.inventory-container .slot img {
+    height: 85%;
+    width: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.inventory-container .slot span {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 5px;
+    color: white;
+    text-shadow: black 0 0;
+    display: none;
+    font-weight: bold;
+}
+
+.inventory-container .slot span.show {
+    display: block;
+}
+
+.inventory-container .profile {
+    margin-bottom: 20px;
+}
+
+.inventory-container .profile .player-img {
+    height: 130px;
+    margin: 0 40px;
+}
+
+.inventory-container .profile .content {
+    margin-bottom: 10px;
+    color: rgb(110, 110, 110);
+    font-size: 17px;
+}
+
+.inventory-container .profile .content > *:first-child {
+    margin-bottom: 2px;
+}
+
+.inventory-container .profile i{
+    font-size: 50px;
+    margin: 0 20px;
+    color: rgb(150, 150, 150);
+}
+
+/* Loader */
+
+.loader-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    z-index: 5;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    transition: .4s all;
+}
+
+.loader-container.active {
+    bottom: 0;
+}
+
+.loader {
+    /*background-color: red;*/
+    padding: 30px;
+    display: inline-block;
+    animation: 3s loader infinite;
+    top: 50%;
+    left: calc(50% - (60px * 4 / 2));
+    position: absolute;
+    background-image: url('../images/block/dirt.jpg');
+    /*transform-origin: bottom right;*/
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes loader {
+    0% {
+        /*transform-origin: bottom right;*/
+        transform: translate(-50%, -50%) rotate(0);
+        margin-left: calc(60px * 0);
+    }
+    25% {
+        /*transform-origin: top right;*/
+        transform: translate(-50%, -50%) rotate(90deg);
+        margin-left: calc(60px * 1);
+    }
+    50% {
+        /*transform-origin: top left;*/
+        transform: translate(-50%, -50%) rotate(180deg);
+        margin-left: calc(60px * 2);
+    }
+    75% {
+        /*transform-origin: bottom left;*/
+        transform: translate(-50%, -50%) rotate(270deg);
+        margin-left: calc(60px * 3);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+        margin-left: calc(60px * 4);
+        /*transform-origin: bottom right;*/
+    }
+}
+
+.loader-container:after {
+    content: '';
+    position: absolute;
+    /*top: 100%;*/
+    width: 60px;
+    border-radius: 100%;
+    background-image: radial-gradient(#aaa 20%, white 60%);
+    height: 15px;
+    top: 50%;
+    left: calc(50% - (60px * 4 / 2));
+    transform: translate(-50%, -50%);
+    margin-top: 42px;
+    animation: 3s loader-shadow infinite;
+    z-index: -1;
+}
+
+@keyframes loader-shadow {
+    0% {
+        width: 60px;
+        margin-left: calc(60px * 0);
+    }
+    7% {
+        width: 20px;
+        margin-left: calc(60px * 0 + 30px);
+    }
+    25% {
+        width: 60px;
+        margin-left: calc(60px * 1);
+    }
+    32% {
+        width: 20px;
+        margin-left: calc(60px * 1 + 30px);
+    }
+    50% {
+        width: 60px;
+        margin-left: calc(60px * 2);
+    }
+    57% {
+        width: 20px;
+        margin-left: calc(60px * 2 + 30px);
+    }
+    75% {
+        width: 60px;
+        margin-left: calc(60px * 3);
+    }
+    82% {
+        width: 20px;
+        margin-left: calc(60px * 3 + 30px);
+    }
+    100% {
+        width: 60px;
+        margin-left: calc(60px * 4);
+    }
+}
+
+.loader-container:before {
+    content: 'Generating World...';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 20px;
+    animation: 2s loader-text infinite linear;
+}
+
+@keyframes loader-text {
+    0% {
+        content: 'Generating World';
+    }
+    25% {
+        content: 'Generating World.';
+    }
+    50% {
+        content: 'Generating World..';
+    }
+    75% {
+        content: 'Generating World...';
+    }
+    100% {
+        content: 'Generating World';
+    }
+}

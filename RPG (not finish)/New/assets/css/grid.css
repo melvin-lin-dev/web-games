@@ -1,0 +1,59 @@
+*{
+	box-sizing: border-box;
+}
+
+.container{
+	padding: 0 15px;
+}
+
+.row{
+	margin: 0 -15px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+[class*="col"]{
+	position: relative;
+	padding: 0 15px;
+}
+
+.col-1{ flex: 1 1 8.333%; max-width: 8.333%; }
+.col-2{ flex: 1 1 16.667%; max-width: 16.667%; }
+.col-3{ flex: 1 1 25%; max-width: 25%; }
+.col-4{ flex: 1 1 33.333%; max-width: 33.333%; }
+.col-5{ flex: 1 1 41.667%; max-width: 41.667%; }
+.col-6{ flex: 1 1 50%; max-width: 50%; }
+.col-7{ flex: 1 1 58.333%; max-width: 58.333%; }
+.col-8{ flex: 1 1 66.667%; max-width: 66.667%; }
+.col-9{ flex: 1 1 75%; max-width: 75%; }
+.col-10{ flex: 1 1 83.333%; max-width: 83.333%; }
+.col-11{ flex: 1 1 91.667%; max-width: 91.667%; }
+.col-12{ flex: 1 1 100%; max-width: 100%; }
+
+.text-primary{
+	color: rgb(0,100,230);
+}
+
+input[type=button], input[type=submit], button{
+	border: none;
+}
+
+input{
+	padding: 4px 7px;
+	border-radius: 4px;
+	border: 1px solid grey;
+}
+
+.btn{
+	padding: 7px 15px;
+	border-radius: 4px;
+}
+
+.btn-primary{
+	background-color: rgb(0,100,240);
+	color: white;
+}
+
+.pb-1{
+	padding-bottom: 1em;
+}

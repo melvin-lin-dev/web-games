@@ -1,0 +1,372 @@
+* {
+    box-sizing: border-box;
+    font-family: arial, serif;
+    transition: .4s all;
+}
+
+html, body {
+    margin: auto;
+    overflow: hidden;
+    background-image: linear-gradient(to top, rgb(50, 200, 230), rgb(10, 60, 180));
+    height: 100%;
+    width: 100%;
+}
+
+button:focus, input:focus {
+    outline: none;
+}
+
+button {
+    background-color: rgb(50, 180, 220);
+    border: 1px solid rgb(50, 180, 220);
+    color: white;
+    cursor: pointer;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: white;
+    color: rgb(50, 180, 220);
+}
+
+input {
+    border: 3px solid rgb(50, 180, 220);
+    border-radius: 100px;
+    padding: 7px 20px;
+}
+
+canvas{
+    opacity: 0;
+}
+
+.player-container {
+    opacity: 0;
+}
+
+.player-container.active {
+    opacity: 1;
+}
+
+.player-container .player {
+    position: absolute;
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 7px solid rgb(50, 150, 200);
+    background-color: rgb(230, 180, 50);
+    color: white;
+    margin: 20px 15px;
+    /*border: 3px solid rgb(124, 57, 67);*/
+}
+
+.player-container .player.lose {
+    opacity: .5;
+}
+
+.player-container .player.lose:after {
+    /*content: 'LOSE';*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border-radius: 3px;
+    color: rgb(255, 50, 50);
+    border: 6px solid rgb(255, 50, 50);
+    font-size: 40px;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+
+.player-container .player:nth-child(1) {
+    top: 0;
+    left: 0;
+}
+
+.player-container .player:nth-child(2) {
+    top: 0;
+    right: 0;
+}
+
+.player-container .player:nth-child(3) {
+    bottom: 0;
+    right: 0;
+}
+
+.player-container .player:nth-child(4) {
+    bottom: 0;
+    left: 0;
+}
+
+.player-container .player:nth-child(n + 2):not(:last-child) {
+    text-align: right;
+}
+
+.player-container .name {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.player-container .heart-container {
+    display: flex;
+}
+
+.player-container .heart-container > div {
+    background-image: url('../images/heart.png');
+    padding: 15px;
+    background-size: contain;
+    background-position: center;
+    display: inline-block;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+}
+
+.player-container .player:nth-child(n + 2):not(:last-child) .heart-container {
+    flex-direction: row-reverse;
+}
+
+.player-container .player:nth-child(n + 2):not(:last-child) .heart-container > div {
+    margin: 0;
+    margin-left: 5px;
+}
+
+.player-container .heart-container > div.heart-lost {
+    background-image: url('../images/heart-lost.png');
+}
+
+.player-container .heart-container > div:last-child {
+    margin: 0;
+    /*background-image: url('../images/heart-lost.png');*/
+}
+
+.layout-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: scaleY(0) translateX(-50%);
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    transform-origin: top;
+}
+
+.layout-container.active {
+    transform: scale(1) translateX(-50%);
+}
+
+.layout-container > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-delay: .5s;
+    /*width: 80%;*/
+}
+
+.start-container, .create-room-container {
+    text-align: center;
+    color: black;
+}
+
+.start-container > div > div, .create-room-container > div {
+    background-color: rgba(255, 255, 255, .8);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.start-container h1 {
+    margin: 0;
+}
+
+.start-container ul {
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.start-container li {
+    margin-top: 5px;
+    transform: scalex(0);
+    list-style: none;
+}
+
+.start-container li.active {
+    transform: scaleX(1);
+    animation: .8s instruction-animation;
+}
+
+.start-container .error-text {
+    color: rgb(255, 80, 80);
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.start-container .error-text span {
+    color: rgb(50, 180, 220);
+    font-weight: bold;
+}
+
+.start-container .error-text.active {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    max-height: 100px;
+}
+
+@keyframes instruction-animation {
+    0% {
+        transform: scaleX(0);
+    }
+    50% {
+        transform: scaleX(1.15);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.start-container input, .start-container button.btn-join {
+    width: 100%;
+}
+
+.start-container button.btn-join {
+    margin-top: 5px;
+}
+
+.start-container hr {
+    margin: 12.5px 0;
+}
+
+.create-room-container .room-id, .create-room-container .player-name {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 15px;
+    color: rgb(50, 180, 220);
+}
+
+.create-room-container .room-id:before, .create-room-container .player-name:before {
+    content: 'Room ID: ';
+    color: black;
+    font-weight: normal;
+    font-size: initial;
+}
+
+.create-room-container button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.create-room-container.waiting > div > *:not(.waiting-opponents):not(.btn-leave):not(.player-name) {
+    display: none;
+}
+
+.create-room-container .player-name {
+    font-size: initial;
+}
+
+.create-room-container .player-name:before {
+    content: 'Name: ';
+}
+
+.countdown-container.active h1:before {
+    content: '0';
+    display: block;
+    transform: scale(1);
+    font-size: 150px;
+    animation: 4s countdown-animation .5s linear;
+}
+
+@keyframes countdown-animation {
+    0% {
+        content: '3';
+    }
+    25% {
+        content: '2';
+    }
+    50% {
+        content: '1';
+    }
+    75% {
+        content: '0';
+    }
+    0%, 25%, 50%, 75% {
+        transform: scale(1);
+    }
+    12.5%, 37.5%, 62.5% {
+        transform: scale(0);
+    }
+}
+
+.game-over-container .the-champion {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    padding-top: 150px;
+    padding-bottom: 80px;
+    background-image: url('../images/trophy.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.game-over-container .loser-container {
+    display: flex;
+    padding: 30px 45px;
+    background-color: rgb(190, 170, 50);
+    border: 7px solid white;
+    border-radius: 5px;
+}
+
+.game-over-container .loser-container > div {
+    flex: 1;
+    padding: 7px 15px;
+    font-size: 20px;
+}
+
+.game-over-container button {
+    display: block;
+    margin: auto;
+    margin-top: 35px;
+}
+
+.indication {
+    position: absolute;
+    /*top: 200px;*/
+    /*left: 100px;*/
+    border-top: 15px solid rgb(220, 200, 50);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    animation: 1.5s indication-animation infinite linear;
+    transition-property: opacity;
+    opacity: 0;
+}
+
+.player-container.active ~ .indication, .player-container.active ~ canvas {
+    opacity: 1;
+}
+
+.indication.over {
+    opacity: 0;
+}
+
+.indication:before {
+    content: 'YOU';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1.2);
+    color: rgb(220, 200, 50);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+@keyframes indication-animation {
+    0%, 100% {
+        margin: -7px;
+    }
+    50% {
+        margin: 0;
+    }
+}

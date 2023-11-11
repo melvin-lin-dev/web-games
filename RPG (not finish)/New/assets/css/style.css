@@ -1,0 +1,30 @@
+*{
+	margin: auto;
+	font-family: segoe ui;
+}
+
+canvas{
+	border: 1px solid black;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.background-image{
+	background-size: cover;
+	background-position: center;
+}
+
+.texture-image{
+	width: 100%;
+	padding-top: 100%;
+}
+
+.page{
+	width: 40%;
+}
+
+.texture-form > div > *{
+	width: 100%;
+}

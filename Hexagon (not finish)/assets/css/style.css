@@ -1,0 +1,15 @@
+html {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), linear-gradient(to top, rgb(188, 23, 250), rgb(85, 0, 180));
+    overflow: hidden;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid rgb(200, 100, 220);
+    background-image: linear-gradient(to top, rgb(188, 23, 250), rgb(85, 0, 180));
+}

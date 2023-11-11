@@ -1,0 +1,5 @@
+function generateBlock(){
+    while(!gameOver){
+
+    }
+}

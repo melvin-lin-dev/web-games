@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Othello</title>
+
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<canvas width="600" height="600" onclick="cvsClick(event)"></canvas>
+
+	<div class="board">	
+		<h1>Turn : <span id="turn"></span></h1>
+		<table>
+			<tr>
+				<td>Black</td>
+				<td>:</td>
+				<td id="black-score"></td>
+			</tr>
+			<tr>
+				<td>White</td>
+				<td>:</td>
+				<td id="white-score"></td>
+			</tr>
+		</table>
+	</div>
+
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/board.js"></script>
+	<script src="assets/js/functionality.js"></script>
+</body>
+</html>

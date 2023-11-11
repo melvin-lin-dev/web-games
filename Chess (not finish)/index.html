@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Chess</title>
+
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+	<div class="container">
+		<canvas width="640" height="640" onclick="pawnSelect(event)" id="chess-board"></canvas>
+
+		<div class="chess-pawn-select"></div>
+
+		<div class="gameover-container">
+			<div class="gameover">
+				<h1>GAMEOVER</h1>
+				<h5><span id="winner"></span></h5>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/board.js"></script>
+	<script src="assets/js/tile.js"></script>
+	<script src="assets/js/pawn.js"></script>
+	<script src="assets/js/pawnSelect.js"></script>
+	<script src="assets/js/functionality.js"></script>
+	<script src="assets/js/generate.js"></script>
+</body>
+</html>

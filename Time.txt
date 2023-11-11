@@ -1,0 +1,2 @@
+Sudoku = 02:00:00 (Generate Number (belum) = 03:03:21)
+Othello = 02:12:19 (Bot (sudah) && Cek Gerakan Yang Ada(belum)  = 4:44:39)

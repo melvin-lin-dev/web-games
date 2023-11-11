@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Candy Crush</title>
+    <style>
+        *{
+            font-family: segoe ui;
+            background-position: top;
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: 0.5s all;
+        }
+
+        button, input{
+            border: none;
+        }
+
+        button:focus{
+            outline: none;
+        }
+
+        body{
+            background-image: url("assets/img/wallpaper.png");
+            overflow: hidden;
+        }
+
+        body > div{
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            display: block;
+            overflow: hidden;
+        }
+
+        .instruction{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.8);
+            transform: rotateY(90deg);
+            /*display: none;*/
+        }
+
+        .instruction > div{
+            width: 80%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        ol li{
+            font-family: segoe ui;
+            margin-bottom: 5px;
+            line-height: 1.6;
+        }
+
+        button{
+            background-color: transparent;
+            padding: 10px 30px;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            border-radius: 100px;
+            font-size: 20px;
+            border: 2px solid #f19e0d;
+            color: #f19e0d;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            position: relative;
+        }
+        .ripple span{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ddd;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            border-radius: 100%;
+            height: 100%;
+            opacity: 0.5;
+        }
+        @keyframes ripple {
+            from{
+                width: 0;
+            }
+            to{
+                width: 100%;
+            }
+        }
+        .ripple:active span{
+            -webkit-animation: ripple .2s ease-in;
+            -o-animation: ripple .2s ease-in;
+            animation: ripple .2s ease-in;
+        }
+        .ripple:hover {
+            background-color: #f19e0d;
+            color: white;
+        }
+
+        button.disabled{
+            background-color: #ccc;
+            cursor: not-allowed;
+            border-color: transparent;
+            color: grey;
+        }
+
+        h1{
+            font-weight: lighter;
+            letter-spacing: 2px;
+        }
+
+        input{
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            width: 50%;
+        }
+
+        .scoreboard{
+            position: absolute;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            background-color: white;
+            transform: scale(0) rotate(90deg);
+        }
+
+        .scoreboard > div{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65%;
+            text-align: center;
+        }
+
+        table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table th{
+            padding: 13px 10px;
+        }
+
+        table td{
+            padding: 5px 10px;
+        }
+
+        .scoreboard img{
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        button.back{
+            margin-top: 30px;
+        }
+
+        .count{
+            font-family: "Cooper Black";
+            font-size: 350px;
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .left, .right{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 960px;
+        }
+
+        .left{
+            left: 30px;
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.7);
+            height: 400px;
+            width: auto;
+        }
+
+        .left > div{
+            margin-bottom: 10px;
+        }
+
+        .right{
+            top: 50%;
+            right: 30px;
+            text-align: center;
+            width: auto;
+            height: auto;
+            display: none;
+        }
+
+        .right > div{
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            height: 70px;
+            width: 70px;
+        }
+
+        .gameover{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            transform: scale(0);
+        }
+
+        .gameover > div{
+            width: 100%;
+            padding: 30px;
+        }
+
+        .gameover div div{
+            text-align: center;
+        }
+
+        .gameover div button{
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .gameover h1{
+            font-family: Cooper;
+            text-align: center;
+            font-size: 100px;
+            width: 100%;
+            margin: 0;
+        }
+
+        .gameover h2{
+            font-weight: lighter;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+
+        .btn-green{
+            color: rgb(10, 230, 0);
+            border-color: rgb(10, 230, 0);
+        }
+
+        .btn-green:hover{
+            background-color: rgb(10, 230, 0);
+        }
+
+        #timer{
+            margin: 0;
+            font-size: 150px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div onclick="clearHighlight()">
+        <div class="left">
+            <div><img src="assets/logo-transparent.png" alt="Logo" height="115px"></div>
+            <div>Name: <span id="nameEl"></span></div>
+            <div>Score: <span id="score"></span></div>
+            <h1 id="timer">30</h1>
+        </div>
+
+        <div class="container">
+            <canvas width="960" height="600" onclick="cvsClick(event)"></canvas>
+
+            <h1 class="count"></h1>
+
+            <div class="instruction">
+                <div>
+                    <h1>Instruction</h1>
+
+                    <ol>
+                        <li>Jewels: Elements that are spread across the 9x9 board. Player needs to align three or more jewels of the same color and shape to break it. You need to design at least 5 types of jewel.</li>
+                        <li>Power-up Jewels: Jewels that are formed when the player successfully chains four jewels. If the chain is formed horizontally, the power-up should be a horizontal power-up jewel, while vertically formed chain should produce a vertical power-up jewel.</li>
+                        <li>Bomb Jewels: jewels that are formed when the player successfully chains five or more.</li>
+                        <li>Player Score: Element that shows the player’s score acquired from creating chains and destroying jewels.</li>
+                        <li>Timer: Element that shows how many seconds the player has until the game is over.</li>
+                        <li>Sound Button: Element that enable and disable the sounds in the game.</li>
+                        <li>Font Size Buttons: Elements that increase and decrease the font size.</li>
+                        <li>Logo: Add the provided logo in the game.</li>
+                        <li>Score Gain: Element that shows when the user destroys jewels and receives score.</li>
+                        <li>Name: Element that shows the name of the current player.</li>
+                    </ol>
+
+                    <input type="text" id="name" autocomplete="off" placeholder="Input your name" onkeyup="checkInput(this.value)">
+
+                    <button class="disabled" id="btn-start" onclick="checkButton()"><span></span>Start Game</button>
+                </div>
+            </div>
+
+            <div class="gameover">
+                <div>
+                    <h1>GAME OVER</h1>
+                    <h2>Score: <span class="score"></span></h2>
+                    <div class="button">
+                        <button class="btn-green ripple" onclick="ranking('show')"><span></span>View Ranking</button>
+                        <button class="ripple" onclick="restart()"><span></span>Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div>
+                <img src="assets/img/font-min.png" alt="Font Min Image" height="100%">
+            </div>
+            <div>
+                <img src="assets/img/font-plus.png" alt="Font Plus Image" height="100%">
+            </div>
+            <div>
+                <div class="mute"></div>
+                <img src="assets/img/sound.png" alt="Sound Image" height="100%">
+            </div>
+            <div>
+                <img src="assets/img/pause.png" alt="Pause Image" height="100%">
+            </div>
+        </div>
+    </div>
+
+    <div class="scoreboard">
+        <div>
+            <img src="assets/logo.png" alt="Gems Logo" width="40%">
+
+            <table border="1">
+                <tr>
+                    <th>Position</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Melvin</td>
+                    <td>90000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Melvin</td>
+                    <td>90000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Melvin</td>
+                    <td>90000</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Melvin</td>
+                    <td>90000</td>
+                </tr>
+            </table>
+
+            <button class="ripple back" onclick="ranking('close')"><span></span>Back</button>
+        </div>
+    </div>
+
+    <script src="assets/src/main.js"></script>
+    <script src="assets/src/game.js"></script>
+    <script src="assets/src/gem.js"></script>
+    <script src="assets/src/draw.js"></script>
+    <script src="assets/src/key.js"></script>
+    <script src="assets/src/functionality.js"></script>
+</body>
+</html>

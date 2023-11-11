@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="assets/css/font-awesome/css/all.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<canvas onmousedown="cvsMouseDown(event)" onmousemove="cvsMouseMove(event)" onmouseup="cvsMouseUp(event)"></canvas>
+
+<div class="loader-container active">
+    <div class="loader"></div>
+</div>
+
+<div class="inventory-container">
+    <div class="profile">
+        <div class="d-flex align-items-center">
+            <div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+                <div class="slot"></div>
+            </div>
+            <div>
+                <img class="player-img" src="./assets/images/skin/steve.png" alt="Steve Image">
+            </div>
+            <div>
+                <div class="content">
+                    <h5>Crafting Area</h5>
+                    <h5>Press[space] as you drag to split stacks</h5>
+                </div>
+
+                <div class="crafting-area-container d-flex align-items-center">
+                    <div class="crafting-area">
+                        <div class="d-flex">
+                            <div class="slot crafting-slot"></div>
+                            <div class="slot crafting-slot"></div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="slot crafting-slot"></div>
+                            <div class="slot crafting-slot"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    <div class="result-container">
+                        <div class="slot craft-result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="side-inventory"></div>
+    <div class="main-inventory"></div>
+</div>
+
+<script src="assets/js/formula.js"></script>
+<script src="assets/js/item.js"></script>
+<script src="assets/js/draw.js"></script>
+<script src="assets/js/event.js"></script>
+<script src="assets/js/block.js"></script>
+<script src="assets/js/generate.js"></script>
+<script src="assets/js/inventory.js"></script>
+<script src="assets/js/window.js"></script>
+<script src="assets/js/check.js"></script>
+<script src="assets/js/helper.js"></script>
+<script src="assets/js/player.js"></script>
+<script src="assets/js/drop.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

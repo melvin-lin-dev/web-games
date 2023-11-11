@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="67ac9266-cc93-4156-9c14-9be75085845d" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ProjectId" id="1UkJGX02h88fyiAdrIbadhNGkPh" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Chess" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\TKJ\Programming Language\Javascript\Games\Minecraft 2D\assets\images\other" />
+      <recent name="D:\TKJ\Programming Language\Javascript\Games\Minecraft 2D\assets\php" />
+      <recent name="D:\TKJ\Programming Language\Javascript\Games\Minecraft 2D\assets\image\status" />
+      <recent name="D:\TKJ\Programming Language\Javascript\Games\Minecraft 2D\assets\image\textures" />
+      <recent name="D:\TKJ\Programming Language\Javascript\Games\Minecraft 2D\assets\image" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\TKJ\Programming Language\Javascript\Games\Minecraft 2D\assets\images\drop" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="67ac9266-cc93-4156-9c14-9be75085845d" name="Default Changelist" comment="" />
+      <created>1575894564701</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575894564701</updated>
+      <workItem from="1575894566001" duration="11000000" />
+      <workItem from="1575957842998" duration="21795000" />
+      <workItem from="1576055272115" duration="37000" />
+      <workItem from="1576144780967" duration="9440000" />
+      <workItem from="1576173774265" duration="2897000" />
+      <workItem from="1576218152776" duration="6194000" />
+      <workItem from="1576318184774" duration="408000" />
+      <workItem from="1576320515581" duration="4925000" />
+      <workItem from="1576328047801" duration="7413000" />
+      <workItem from="1576378255099" duration="5908000" />
+      <workItem from="1576465519562" duration="17926000" />
+      <workItem from="1576579782356" duration="361000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: auto;
+            box-sizing: border-box;
+            font-family: segoe ui;
+        }
+
+        .container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        canvas {
+            background-color: rgb(190, 230, 255);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .game-over-container, .start-container {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: .6s all;
+            background-color: rgba(255, 255, 255, .7);
+        }
+
+        .start-container {
+            bottom: 100%;
+        }
+
+        .start-container.active {
+            bottom: 0;
+        }
+
+        .game-over-container {
+            top: 100%;
+        }
+
+        .game-over-container.active {
+            top: 0;
+        }
+
+        .game-over-container > div, .start-container > div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container h1 {
+            color: white;
+            font-size: 45px;
+            -webkit-text-stroke: 2px black;
+        }
+
+        .container h3 {
+            text-align: center;
+            color: white;
+            font-size: 35px;
+            -webkit-text-stroke: 2px black;
+        }
+
+        .container button {
+            display: block;
+            margin: auto;
+            margin-top: 25px;
+            cursor: pointer;
+            border: 1px solid rgb(0, 160, 200);
+            border-radius: 5px;
+            background-color: rgb(0, 160, 200);
+            padding: 7px 15px;
+            color: white;
+            transition: .4s all;
+        }
+
+        .container button:hover {
+            background-color: white;
+            color: rgb(0, 160, 200);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas></canvas>
+
+    <div class="start-container">
+        <div>
+            <h1>Sky Jump</h1>
+            <button onclick="start()">Start</button>
+        </div>
+    </div>
+
+    <div class="game-over-container">
+        <div>
+            <h1>GAMEOVER</h1>
+            <h3>Score: <span id="score">0</span></h3>
+            <button onclick="restart()">Restart</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/draw.js"></script>
+<script src="js/generate.js"></script>
+<script src="js/helper.js"></script>
+<script src="js/platform.js"></script>
+<script src="js/window.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hit & Dodge</title>
+
+    <link rel="shortcut icon" href="#"/>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="player-container">
+    <div class="player">
+        <div class="name"></div>
+        <div class="heart-container">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+
+<canvas></canvas>
+
+<div class="indication"></div>
+
+<div class="start-container layout-container">
+    <div>
+        <div class="instruction">
+            <h1>Hit & Dodge</h1>
+            <ul></ul>
+        </div>
+
+        <div class="create-or-join">
+            <input type="text" placeholder="Your Name" class="name-input">
+            <hr>
+            <button onclick="createRoom()">Create Room</button>
+            <p>Or</p>
+            <input type="text" placeholder="Room ID" class="room-id-input">
+            <p class="error-text"></p>
+            <button class="btn-join" onclick="joinRoom()">Join</button>
+        </div>
+    </div>
+</div>
+
+<div class="create-room-container layout-container">
+    <div>
+        <div class="room-id"></div>
+        <div class="player-name"></div>
+        <div class="waiting-opponents">Waiting for your opponents...</div>
+        <button class="btn-leave" onclick="leaveRoom()">Leave Room</button>
+    </div>
+</div>
+
+<div class="countdown-container layout-container">
+    <div>
+        <h1></h1>
+    </div>
+</div>
+
+<div class="game-over-container layout-container">
+    <div>
+        <div class="the-champion"></div>
+        <div class="loser-container">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <button onclick="restart()">Restart</button>
+    </div>
+</div>
+
+<script src="js/external/socket.io.js"></script>
+
+<script src="js/main.js"></script>
+<script src="js/socket.js"></script>
+<script src="js/window.js"></script>
+<script src="js/update.js"></script>
+<script src="js/ball.js"></script>
+<script src="js/player.js"></script>
+<script src="js/helper.js"></script>
+<script src="js/check.js"></script>
+<script src="js/generate.js"></script>
+</body>
+</html>

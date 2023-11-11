@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    background-color: ivory;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+}
+
+.end {
+    position: absolute;
+    border: 7px solid rgb(255, 175, 55);
+    background-color: black;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: -1;
+    /*display: none;*/
+}
+
+.mouth {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgb(255, 215, 0);
+    /*margin: 50% 0;*/
+}
+
+.mouth.top {
+    top: 0;
+}
+
+.mouth.bottom {
+    bottom: 0;
+}
+
+.container {
+    width: 800px;
+    height: 300px;
+    position: relative;
+}
+
+.container svg {
+    position: absolute;
+}
+
+.container svg path {
+    fill: none;
+    stroke: #DABDD8;
+    stroke-width: 10;
+}
+
+.container svg polygon {
+    fill: orange;
+}
+
+.player-container {
+    position: absolute;
+    border: 10px solid rgb(200, 200, 200);
+    background-color: rgb(150, 150, 150);
+    border-radius: 50%;
+    padding: 100px;
+}
+
+.player {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+}
+
+.ball-current, .ball-future {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ball-current {
+    top: 42px;
+}
+
+.ball-future {
+    bottom: 50px;
+    transform: translateX(-50%) scale(.8);
+}
+
+.ball-container div, .player-container div[class*=ball] {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+svg circle{
+    stroke: black;
+    stroke-width: 2px;
+}

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Othello</title>
+
+    <style>
+        * {
+            transition: .4s all;
+            font-family: segoe ui;
+            box-sizing: border-box;
+        }
+
+        ul, ol, p, h1, h2, h3, h4, h5, h6 {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container {
+            height: 560px;
+            width: 560px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -42%);
+        }
+
+        canvas {
+            background-color: rgb(0, 150, 0);
+            position: absolute;
+        }
+
+        .instruction {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            color: white;
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .instruction > div {
+            width: 80%;
+        }
+
+        .instruction h1 {
+            margin-bottom: 5px;
+        }
+
+        .instruction li {
+            margin-bottom: 5px;
+        }
+
+        button {
+            border: none;
+        }
+
+        .form > * {
+            display: inline-block;
+        }
+
+        .form input {
+            border: none;
+            padding: 8px 11px;
+            width: calc(100% - 120px);
+            border-radius: 3px;
+        }
+
+        .form > div {
+            width: 100px;
+            text-align: right;
+        }
+
+        .form button {
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+            position: relative;
+            top: 8px;
+            border-radius: 100%;
+        }
+
+        .form button.disabled {
+            cursor: not-allowed;
+        }
+
+        .form #btn-white {
+            background-color: white;
+        }
+
+        .form #btn-black {
+            background-color: black;
+        }
+
+        .form #btn-white:hover {
+            background-color: #e2e9fc;
+        }
+
+        .form #btn-black:hover {
+            background-color: #272729;
+        }
+
+        .form button:active {
+            background-color: #0069d9;
+        }
+
+        .header {
+            background-color: rgb(0, 150, 0);
+            border-radius: 5px;
+            position: absolute;
+            bottom: 105%;
+            width: 100%;
+            padding: 5px 7px;
+            color: white;
+        }
+
+        .header .high-score {
+            float: left;
+        }
+
+        .header .current-score {
+            text-align: right;
+            float: right;
+        }
+
+        /*.header img{*/
+        /*position: absolute;*/
+        /**/
+        /*}*/
+
+        .gameover {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 8px 12px;
+            width: 80%;
+            text-align: center;
+            border-radius: 5px;
+            transform: translate(-50%,-50%) scale(0);
+        }
+
+        .gameover button {
+            background-color: rgb(0, 150, 0);
+            border: 1px solid transparent;
+            color: white;
+            border-radius: 100px;
+            padding: 6px 16px;
+        }
+
+        .gameover button:hover {
+            background-color: transparent;
+            color: rgb(0, 150, 0);
+            border-color: rgb(0, 150, 0);
+            cursor: pointer;
+        }
+
+        .sound-icon{
+            position: absolute;
+            top: 70%;
+            left: 20%;
+        }
+
+        .sound-icon .mute{
+            height: 0;
+            width: 3px;
+            background-color: rgb(0,150,0);
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%,-50%) rotate(45deg);
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="images/icon.png" alt="Game Icon" class="center" height="100">
+        <div class="sound-icon" onclick="toggleMute()">
+            <img src="images/sound.png" alt="Sound Icon" height="40">
+            <div class="mute"></div>
+        </div>
+        <div>
+            <div class="high-score">
+                <p>High Score: (Name: <span id="high-score-name"></span>)</p>
+                <h2 id="high-score">0</h2>
+            </div>
+            <div class="current-score">
+                <p>Current Score:</p>
+                <div>
+                    <p><span id="black-score">0</span> :Black (<span id="black-controller">-</span>)</p>
+                    <p><span id="white-score">0</span> :White (<span id="white-controller">-</span>)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <canvas width="560" height="560" onclick="cvsClick(event)"></canvas>
+
+    <div class="instruction">
+        <div class="center">
+            <h1>How To Play Othello</h1>
+            <ol>
+                <li>1. Outflank enemy is color</li>
+                <li>2. Outflank available for horizontal, vertical, & diagonal move</li>
+            </ol>
+            <div class="form">
+                <input type="text" placeholder="name" onkeyup="checkInput(event)">
+                <div class="colors">
+                    <button id="btn-white" class="disabled" disabled onclick="chooseColor('white')"></button>
+                    <button id="btn-black" class="disabled" disabled onclick="chooseColor('black')"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gameover center">
+        <h2></h2>
+        <button onclick="location.reload()">Restart</button>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/generate.js"></script>
+<script src="js/draw.js"></script>
+<script src="js/tile.js"></script>
+<script src="js/functionality.js"></script>
+</body>
+</html>

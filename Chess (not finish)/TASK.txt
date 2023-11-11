@@ -1,0 +1,3 @@
+-win/lose
+-draw
+-pawn can't move if enemy pawn is threatening

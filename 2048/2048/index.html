@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2048</title>
+	<style>
+		*{
+			font-family: segoe ui;
+		}
+
+		canvas{
+			background-color: #cdc1b4;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			border: 5px solid #bbada0;
+		}
+
+		h1{
+			position: absolute;
+			right: 230px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Score: <span id="score">0</span></h1>
+	<canvas width="600" height="600"></canvas>
+	<script src="src.js"></script>
+	<script src="board.js"></script>
+	<script src="control.js"></script>
+</body>
+</html>

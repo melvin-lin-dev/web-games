@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="30bf7f1d-940c-4d0c-a1dd-b2f013f1e0ad" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="ProjectId" id="1a1XCOxB1nReB4IlPKlvWFrDocT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../to-asc/2/server-side/01_JS-PHP_B" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\TKJ\Programming Language\Javascript\Games\Hexagon\assets\js" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="30bf7f1d-940c-4d0c-a1dd-b2f013f1e0ad" name="Default Changelist" comment="" />
+      <created>1585903945040</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585903945040</updated>
+      <workItem from="1585903946402" duration="3503000" />
+      <workItem from="1585919123204" duration="2996000" />
+      <workItem from="1585932231495" duration="5540000" />
+      <workItem from="1585973054268" duration="11706000" />
+      <workItem from="1586004023647" duration="5172000" />
+      <workItem from="1586056567439" duration="14233000" />
+      <workItem from="1586087689237" duration="1884000" />
+      <workItem from="1586143741343" duration="18954000" />
+      <workItem from="1586174967215" duration="8525000" />
+      <workItem from="1586196300253" duration="2625000" />
+      <workItem from="1586234946617" duration="2245000" />
+      <workItem from="1586274617246" duration="8998000" />
+      <workItem from="1586313835342" duration="3011000" />
+      <workItem from="1586326235052" duration="2957000" />
+      <workItem from="1586368463933" duration="8134000" />
+      <workItem from="1586404262047" duration="11426000" />
+      <workItem from="1586767314279" duration="599000" />
+      <workItem from="1587043362826" duration="573000" />
+      <workItem from="1587992653937" duration="6920000" />
+      <workItem from="1588011332211" duration="2231000" />
+      <workItem from="1588046770255" duration="10670000" />
+      <workItem from="1588419868864" duration="265000" />
+      <workItem from="1588446496184" duration="599000" />
+      <workItem from="1588556019567" duration="432000" />
+      <workItem from="1588556922192" duration="25000" />
+      <workItem from="1588871460285" duration="216000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1588871674994">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588871674994" />
+    <state x="399" y="109" width="740" height="606" key="find.popup" timestamp="1586375727310">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="399" y="109" width="740" height="606" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1586375727310" />
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup" timestamp="1586375988011">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586375988011" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1586431082610">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1586431082610" />
+  </component>
+</project>

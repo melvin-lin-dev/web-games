@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   	<style>
+   		.container{
+   			position: absolute;
+   			top: 50%;
+   			left: 50%;
+   			transform: translate(-50%,-50%);
+   			border: 1px solid grey;
+   		}
+
+      canvas{
+        background-color: rgba(100,100,100,0.3);
+      }
+   	</style>
+  </head>
+  <body>
+  	<div class="container">
+  		<canvas width="500" height="500" onclick="getPosition(event)" oncontextmenu="getPosition(event)"></canvas>
+  		<script src="src.js"></script>
+  		<script src="board.js"></script>
+  		<script src="cell.js"></script>
+  		<script src="mouse.js"></script>
+      <script src="flow.js"></script>
+  	</div>
+  </body>
+</html>
