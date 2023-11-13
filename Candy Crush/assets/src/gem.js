@@ -18,7 +18,7 @@ class Gem {
 
         this.type = gem;
 
-        this.tes = true;
+        this.tes = false;
 
         this.destroyed = false;
 

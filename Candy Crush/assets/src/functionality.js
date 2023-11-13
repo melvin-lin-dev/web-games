@@ -59,35 +59,35 @@ function check() {
         for (let j = 0; j < s; j++) {
             let gem = game_grid[i][j];
 
-            direction.forEach((dir, index) => {
-                lines = [[i, j]];
+            if(!gem.destroyed){
+                direction.forEach((dir, index) => {
+                    lines = [[i, j]];
+    
+                    let x = j;
+                    let y = i;
+    
+                    while (dir) {
+                        x += dir[0];
+                        y += dir[1];
 
-                let x = dir[0] + j;
-                let y = dir[1] + i;
-                if (x >= 0 && y >= 0 && x < s && y < s) {
-                    let nextGem = game_grid[y][x];
+                        if (x >= 0 && y >= 0 && x < s && y < s) {
+                            let nextGem = game_grid[y][x];
 
-                    if (gem.type == nextGem.type) {
-                        lines.push([y, x]);
-
-                        while (dir) {
-                            x += dir[0];
-                            y += dir[1];
-
-                            if (x >= 0 && y >= 0 && x < s && y < s) {
-                                let nextGem2 = game_grid[y][x];
-
-                                if (nextGem.type != nextGem2.type && nextGem.type <= 6) break;
-
-                                lines.push([y, x]);
-                            } else {
+                            if (gem.type != nextGem.type || nextGem.type > 6 || nextGem.destroyed || nextGem.destroyed === undefined) {
+                                // i = y - dir[1];
+                                // j = x - dir[0];
                                 break;
                             }
+
+                            lines.push([y, x]);
+                        } else {
+                            break;
                         }
                     }
-                }
-                checkLines(dir);
-            })
+
+                    checkLines(dir);
+                })
+            }
         }
     }
 
@@ -96,6 +96,7 @@ function check() {
 
 function checkLines(dir) {
     if (lines.length >= 3) {
+        console.log('check lines')
         let called = false;
 
         lines.forEach((line, i) => {
@@ -120,13 +121,14 @@ function checkLines(dir) {
             });
         });
 
-        if(!powerUpActived){
+        if(!powerUpActived && lines.length >= 4 && !called){
             if (lines.length == 4) {
                 if ((dir[0] == 1 && dir[1] == 0) || (dir[0] == -1 && dir[1] == 0)) powerUp.push('horizontal');
                 else powerUp.push('vertical');
             } else if (lines.length >= 5) {
                 powerUp.push('bomb');
             }
+            called = true;
         }
 
         lines = [];
@@ -179,8 +181,8 @@ function addGems() {
                     let gem;
                     if (powerUp.length) {
                         if (powerUp[0] == 'bomb') gem = 7;
-                        if (powerUp[0] == 'vertical') gem = 8;
-                        if (powerUp[0] == 'horizontal') gem = 9;
+                        else if (powerUp[0] == 'vertical') gem = 8;
+                        else if (powerUp[0] == 'horizontal') gem = 9;
     
                         powerUp.shift();
                     } else {
