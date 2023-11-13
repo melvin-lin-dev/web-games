@@ -57,7 +57,10 @@ function checkFlow(){ // Cek alirnya
 							nextTile.state = 1; // Ubah status tile menjadi terisi
 							flows.push(nextTile); // Masukkan tile ke dalam flows
 						}else if(nextTile.imageType === 'source_and_destination' && nextTile.type){ // Cek apakah pipenya sudah mencapai tujuan pipe dan tipenya 1 (Warna hitam)
-							alert('You Have Won The Game');
+							setTimeout(() => {
+								alert('You Have Won The Game');
+								location.reload();
+							}, 350);
 							return false;
 						}
 					}
