@@ -2,11 +2,17 @@ let cvs = document.querySelector('canvas');
 let ctx = cvs.getContext('2d');
 
 let racket = {x: cvs.width/2, y: cvs.height-50, width: 100, height: 20};
-let ball = {x: cvs.width/2, y: cvs.height/2+150, r: 10, moveX: 5, moveY: 5};
+let ball = {x: rand(20, cvs.width - 30), y: cvs.height/2-150, r: 10, moveX: 5 * (Math.random() <= 0.5 ? -1 : 1), moveY: 5};
 let blocks = [];
+
+let over = false;
 
 window.onload = function(){
 	start();
+}
+
+function rand(min, max){
+    return Math.floor(Math.random() * max) + min;
 }
 
 function start(){
@@ -15,13 +21,16 @@ function start(){
 }
 
 function update(){
-	ctx.clearRect(0,0,cvs.width,cvs.height);
-	key();
-	checkCollision();
-	drawBlocks();
-	drawRacket();
-	drawBall();
-	requestAnimationFrame(update);
+	if(!over){
+		ctx.clearRect(0,0,cvs.width,cvs.height);
+		key();
+		checkCollision();
+		drawBlocks();
+		drawRacket();
+		drawBall();
+		checkOver();
+		requestAnimationFrame(update);
+	}
 }
 
 function drawBall(){
@@ -78,6 +87,18 @@ function checkCollision(){
 		}
 	});
 
+	if(!blocks.length){
+		over = true;
+
+		drawBlocks();
+		
+		setTimeout(() => {
+			alert("You have won the game!");
+			location.reload();
+		})
+		return false;
+	}
+
 
 	if(ball.x + ball.r >= racket.x && 
 	ball.x <= racket.x + racket.width && 
@@ -102,5 +123,13 @@ function bounce(x,y,w,h){
 
 	if(checkX && checkY){
 		ball.moveY *= -1;
+	}
+}
+
+function checkOver(){
+	if(ball.y > racket.y + racket.height / 10){
+		over = true;
+		alert('Game Over!');
+		location.reload();
 	}
 }

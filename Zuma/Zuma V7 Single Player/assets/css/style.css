@@ -1,0 +1,795 @@
+* {
+    box-sizing: border-box;
+    user-select: none;
+    font-family: arial;
+    transition: .4s all;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+button:focus, input:focus, textarea:focus, select:focus {
+    outline: none;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    background-color: rgb(50, 150, 50);
+    overflow: hidden;
+}
+
+button, .button {
+    background-color: rgb(50, 165, 50);
+    border: 1px solid rgb(50, 165, 50);
+    color: white;
+    cursor: pointer;
+}
+
+button:disabled, .button:disabled {
+    cursor: not-allowed;
+}
+
+button:not(:disabled):hover, .button:not(:disabled):hover {
+    background-color: white;
+    color: rgb(50, 165, 50);
+}
+
+svg path {
+    fill: none;
+}
+
+svg path:nth-of-type(1) {
+    stroke: rgb(230, 180, 55);
+}
+
+/*svg path:nth-child(3) {*/
+/*    stroke: rgb(80, 190, 50);*/
+/*}*/
+
+svg path:last-of-type {
+    stroke: rgb(50, 140, 30);
+    filter: url('#innershadow');
+}
+
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.end {
+    position: absolute;
+    border: 7px solid rgb(230, 180, 55);
+    background-color: black;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    transition: .2s border-color;
+    animation: 1s endAnimation infinite;
+}
+
+@keyframes endAnimation {
+    0%, 100% {
+        box-shadow: inset 0 0 20px 6.5px rgb(250, 70, 70);
+    }
+    50% {
+        box-shadow: inset 0 0 10px 4px rgb(250, 70, 70);
+    }
+}
+
+.mouth {
+    /*display: none;*/
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgb(220, 170, 50);
+    transition: .4s background-color;
+}
+
+.end.active {
+    border-color: rgb(255, 220, 55);
+}
+
+.end.active .mouth {
+    background-color: rgb(255, 180, 50);
+}
+
+.mouth.top {
+    top: 0;
+}
+
+.mouth.bottom {
+    bottom: 0;
+}
+
+.main-container {
+    display: flex;
+    transform: scaleY(0);
+}
+
+.main-container.active {
+    transform: scaleY(1);
+}
+
+.information-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    margin: 24px;
+}
+
+.information-container div{
+    position: relative;
+    border-radius: 100px;
+    border: 3px solid rgb(230, 180, 55);
+    background-color: rgb(50, 140, 30);
+    box-shadow: inset 0 0 10px #444444;
+    color: white;
+    font-weight: 600;
+    padding: 12px 16px;
+}
+
+.information-container div.name{
+    margin-bottom: 12px;
+}
+
+.information-container div:before{
+    content: attr(data-title);
+    text-transform: capitalize;
+    background-color: rgb(230, 180, 55);
+    color: white;
+    padding: 2px 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100px;
+    font-size: 10px;
+    transform: translate(10px, -50%);
+}
+
+.screen-container {
+    flex: 1;
+    border: 2px solid black;
+    position: relative;
+    overflow: hidden;
+}
+
+.layout-container {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: .4s all;
+    background-color: rgba(255, 255, 255, .7);
+    z-index: 5;
+}
+
+.layout-container.active {
+    bottom: 0;
+}
+
+.layout-container:not(.map-container) > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.layout-container h1 {
+    font-size: 50px;
+}
+
+.layout-container button {
+    padding: 7px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.menu-container > div {
+    width: 35%;
+}
+
+.menu-container .back {
+    padding: 5px 15px;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 10px;
+    transition: .4s all;
+    transform: scale(0);
+}
+
+.menu-container .back.active {
+    transform: scale(1);
+}
+
+.menu-container h1 {
+    margin-bottom: 10px;
+}
+
+.menu-container ul {
+    padding: 0;
+}
+
+.menu-container li {
+    padding: 7px 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    list-style: none;
+    transform: scale(0);
+    animation: .7s menuAnimationOff;
+    text-transform: capitalize;
+    transition: .4s all;
+}
+
+.menu-container li.active {
+    transform: scale(1);
+    animation: .7s menuAnimationOn;
+}
+
+@keyframes menuAnimationOff {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes menuAnimationOn {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.map-container {
+    background-color: transparent;
+}
+
+.map-container .menu{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+    z-index: 20;
+}
+
+.map-container .menu i{
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+
+.map-container .menu i:hover{
+    transform: scale(1.25);
+}
+
+.map-container .menu i:not(:last-child){
+    margin-right: 12px;
+}
+
+.map-container .design-container {
+    position: relative;
+    height: 100%;
+    transform: none;
+}
+
+.map-container .design-container .list-container > div.active{
+    filter: brightness(1.3);
+}
+
+.map-container .map {
+    position: relative;
+    overflow: hidden;
+}
+
+.map-container .list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    background-color: rgba(255,255,255,.3);
+    border-left: 3px solid rgba(255, 255, 255, .8);
+    z-index: 30;
+    transform: translateX(100%);
+}
+
+.map-container .list.active{
+    transform: none;
+}
+
+.map-container .button-container {
+    text-align: center;
+}
+
+.map-container .form {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    color: white;
+    width: 50%;
+    flex: 5;
+}
+
+.map-container .form.active {
+    max-height: 100%;
+    padding: 20px 15px;
+}
+
+.map-container .list-form {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.map-container .list .form .map-name {
+    margin-bottom: 10px;
+}
+
+.map-container .list-form::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 100px;
+}
+
+.map-container .list-form::-webkit-scrollbar-track {
+    background-color: rgb(220, 220, 220);
+}
+
+.map-container .list-form::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 100px;
+}
+
+.map-container .list-form > div, .map-container .player-form {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, .5);
+    padding: 7px 15px;
+    border: 2px solid transparent;
+    transform: scale(0.8);
+    transition: .4s all;
+}
+
+.map-container .list-form > div.active {
+    transform: scale(1);
+    border-color: white;
+}
+
+.map-container .list-form span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: red;
+    cursor: pointer;
+    transform: scale(0);
+    transition: .4s all;
+    margin: 5px 15px;
+    font-weight: bold;
+}
+
+.map-container .list-form > div.active span {
+    transform: scale(1);
+}
+
+.map-container .form .input-container {
+    max-height: 0;
+    transition: .5s all;
+    overflow: hidden;
+}
+
+.map-container .player-form {
+    transform: scale(1);
+    margin-bottom: 10px;
+    border-color: white;
+}
+
+.map-container .player-form .input-container {
+    max-height: initial;
+}
+
+.map-container .list-form .path-name, .map-container .player-title {
+    margin-bottom: 10px;
+}
+
+.map-container .list-form > div.active .input-container {
+    max-height: 400px;
+}
+
+.map-container input, .map-container select {
+    padding: 5px 10px;
+    border-radius: 7px;
+    width: 100%;
+    border: 1px solid #aaa;
+}
+
+.map-container input {
+    margin-top: 5px;
+}
+
+.map-container input::placeholder {
+    color: #bbb;
+}
+
+.map-container .map .end, .map-container .map .player-design {
+    display: none;
+}
+
+.map-container .map .end.design-active, .map-container .map .end.design-active + .player-design {
+    display: initial;
+}
+
+.sidebar-container {
+    background-color: rgba(255, 255, 255, .5);
+    border-left: 3px solid rgba(255, 255, 255, .6);
+    height: 100%;
+    transition: .4s right;
+    flex: 1;
+}
+
+.sidebar-container button {
+    width: 100%;
+    margin-top: 0;
+    border-radius: 0;
+    padding: 8px 20px;
+    text-align: center;
+}
+
+.list-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 7px 15px;
+}
+
+.list-container > div {
+    border: 2px solid white;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+    margin: 15px auto;
+    background-color: rgb(50, 150, 50);
+}
+
+.list-container > div .child-map {
+    overflow: hidden;
+}
+
+.list-container > div .child-map > div {
+    transform: scale(.2);
+    transform-origin: top left;
+}
+
+.list-container > div:not(.add):not(.active):hover {
+    background-color: rgb(50, 170, 50);
+    /*border-color: rgb(230, 180, 55);*/
+}
+
+.list-container > div.add {
+    border-color: rgb(50, 165, 50);
+    background-color: rgb(50, 165, 50);
+}
+
+.list-container > div.add:after {
+    content: '+';
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+
+.list-container > div.add:hover {
+    border-color: white;
+    background-color: rgba(255, 255, 255, .3);
+}
+
+.list-container > div span.map-name {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3px 9px;
+    border-radius: 100px;
+    background-color: rgb(210, 170, 55);
+    color: white;
+    width: 80%;
+    font-size: 13px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.list-container > div .close {
+    background-color: rgb(230, 50, 50);
+    border: 1px solid rgb(230, 50, 50);
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: -5px;
+}
+
+.list-container > div .close:after {
+    content: '\00D7';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.list-container > div span.close:hover {
+    background-color: white;
+    color: rgb(230, 50, 50);
+}
+
+.list-container svg, .list-container .end {
+    /*transform-origin: top left;*/
+    /*transform: scale(.2);*/
+}
+
+.player-design {
+    border-radius: 50%;
+    border: 8px solid rgb(180, 180, 180);
+    background-color: rgb(200, 200, 200);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.player-design img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.lobby-container input.player-name {
+    color: black;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.lobby-container {
+    background-color: rgb(194, 224, 194);
+}
+
+.lobby-container .map-list {
+    width: 500px;
+    padding-bottom: 5px;
+    overflow-x: auto;
+    margin: auto;
+    display: none;
+}
+
+.lobby-container .map-list.active {
+    display: block;
+}
+
+.lobby-container .map-list::-webkit-scrollbar {
+    height: 7px;
+}
+
+.lobby-container .map-list::-webkit-scrollbar-track {
+    background-color: rgb(240, 240, 240);
+    border-radius: 100px;
+}
+
+.lobby-container .map-list::-webkit-scrollbar-thumb {
+    background-color: rgb(50, 165, 50);
+    border-radius: 100px;
+}
+
+.lobby-container .list-container {
+    display: flex;
+    overflow-x: initial;
+    overflow-y: initial;
+    padding: initial;
+    max-height: initial;
+    align-items: flex-end;
+}
+
+.lobby-container .list-container > div:not(:last-child){
+    margin-right: 15px;
+}
+
+.lobby-container .list-container > div.active {
+    border-color: rgb(230, 180, 55);
+    filter: brightness(1.3);
+}
+
+.lobby-container .button-container {
+    width: 300px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.lobby-container .button-container button {
+    display: block;
+    width: 100%;
+}
+
+.lobby-container .button-container button:first-child:disabled{
+    background-color: rgba(50, 165, 50,.5);
+    border-color: rgba(50, 165, 50, .5);
+}
+
+.lobby-container .button-container button:last-child{
+    background-color: white;
+    color: rgb(50, 165, 50);
+    margin-top: 8px;
+}
+
+.lobby-container .button-container button:last-child:hover{
+    background-color: rgb(50, 165, 50);
+    color: white;
+}
+
+.lobby-container .map-not-available {
+    max-height: 0;
+    margin: 0;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.lobby-container .map-not-available.active {
+    max-height: 100px;
+}
+
+.join-room-container .input-container {
+    position: relative;
+}
+
+.join-room-container input, .room-container .player-name {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 375px;
+    padding: 12px 20px;
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.join-room-container label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    background-color: white;
+    color: #ccc;
+    font-size: 14.5px;
+}
+
+.join-room-container input:focus {
+    color: black;
+}
+
+.join-room-container input:focus + label {
+    top: 0;
+    left: 7px;
+    font-size: 12px;
+    color: black;
+}
+
+.join-room-container button {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.countdown-container h1:after {
+    content: '3';
+    display: block;
+    transform: scale(1);
+    font-size: 100px;
+}
+
+.countdown-container.active h1:after {
+    animation: 4s countdownAnimation .4s linear;
+}
+
+@keyframes countdownAnimation {
+    0% {
+        content: '3';
+    }
+    12.5%, 37.5%, 62.5% {
+        transform: scale(0);
+    }
+    0%, 25%, 50%, 75% {
+        transform: scale(1);
+    }
+    25% {
+        content: '2';
+    }
+    50% {
+        content: '1';
+    }
+    75% {
+        content: '0';
+    }
+}
+
+.game-over-container h1 {
+    margin-bottom: 10px;
+}
+
+.rank-container{
+    background-color: white;
+}
+
+.rank-container i{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.rank-container i:hover{
+    color: rgb(250, 70, 70);
+}
+
+.rank-container h1{
+    font-weight: bold;
+    margin-bottom: 0;
+    font-size: 64px;
+}
+
+.rank-container .description{
+    font-size: 24px;
+}
+
+.rank-container table {
+    border-collapse: collapse;
+}
+
+.rank-container table{
+    margin-top: 28px;
+    width: 550px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 5px #ddd;
+}
+
+.rank-container table th{
+    background-color: rgb(50, 165, 50);
+    color: white;
+    padding: 8px 12px;
+}
+
+.rank-container table td{
+    padding: 4px 12px;
+}
+
+.rank-container table tr:nth-child(even){
+    background-color: rgba(0,0,0,.05);
+}

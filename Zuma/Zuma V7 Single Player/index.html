@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ZUMA</title>
+
+    <link rel="shortcut icon" href="#"/>
+
+    <link rel="stylesheet" href="./assets/other/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/external/tone.js"></script>
+
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/menu.js" defer></script>
+    <script src="assets/js/update.js" defer></script>
+    <script src="assets/js/player.js" defer></script>
+    <script src="assets/js/ball.js" defer></script>
+    <script src="assets/js/helper.js" defer></script>
+    <script src="assets/js/generate.js" defer></script>
+    <script src="assets/js/window.js" defer></script>
+    <script src="assets/js/check.js" defer></script>
+    <script src="assets/js/particle.js" defer></script>
+    <script src="assets/js/score.js" defer></script>
+    <script src="assets/js/sound.js" defer></script>
+</head>
+<body>
+<div class="main-container">
+    <div class="screen-container">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             enable-background="new 0 0 800 300" xml:space="preserve">
+            <filter id="innershadow">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"></feGaussianBlur>
+                <feOffset dy="2" dx="3"></feOffset>
+                <feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"></feComposite>
+
+                <feFlood flood-color="#444444" flood-opacity="0.75"></feFlood>
+                <feComposite in2="shadowDiff" operator="in"></feComposite>
+                <feComposite in2="SourceGraphic" operator="over" result="firstfilter"></feComposite>
+
+                <feGaussianBlur in="firstfilter" stdDeviation="3" result="blur2"></feGaussianBlur>
+                <feOffset dy="-2" dx="-3"></feOffset>
+                <feComposite in2="firstfilter" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"></feComposite>
+
+                <feFlood flood-color="#444444" flood-opacity="0.75"></feFlood>
+                <feComposite in2="shadowDiff" operator="in"></feComposite>
+                <feComposite in2="firstfilter" operator="over"></feComposite>
+            </filter>
+
+            <path/>
+	    </svg>
+
+        <canvas></canvas>
+
+        <div class="end">
+            <div class="mouth top"></div>
+            <div class="mouth bottom"></div>
+        </div>
+    </div>
+        
+    <div class="information-container">
+        <div class="name" data-title="name"></div>
+        <div class="score" data-title="score">0</div>
+    </div>
+</div>
+
+<div class="menu-container layout-container">
+    <span class="button back" onclick="previousMenu()">&#8678;</span>
+    <div>
+        <h1>Zuma</h1>
+
+        <ul></ul>
+    </div>
+</div>
+
+<div class="map-container layout-container">
+    <div class="menu">
+        <i class="fa-solid fa-arrow-left" title="Back" onclick="exitMap()"></i>
+        <i class="fa-solid fa-road" title="Maps" onclick="openMaps()"></i>
+    </div>
+    <div class="design-container">
+        <div class="map"></div>
+
+        <div class="list">
+            <div class="form">
+                <input type="text" placeholder="Map Name" class="map-name">
+
+                <div class="player-form">
+                    <div class="title">Player Position</div>
+                    <div class="input-container">
+                        <input type="text" id="player-design-x" placeholder="x" value="0" onkeyup="setPlayerPosition()">
+                        <input type="text" id="player-design-y" placeholder="y" value="0" onkeyup="setPlayerPosition()">
+                    </div>
+                </div>
+
+                <div class="list-form"></div>
+
+                <div class="button-container">
+                    <button onclick="addPath()">+ Path</button>
+                    <button onclick="saveMap()">Save</button>
+                </div>
+            </div>
+
+            <div class="sidebar-container">
+                <button onclick="openMaps(false)">Close</button>
+
+                <div class="list-container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lobby-container room-container layout-container">
+    <div>
+        <div class="map-list">
+            <div class="list-container"></div>
+        </div>
+        <h1 class="map-not-available">No Map Available Yet</h1>
+        <input type="text" placeholder="Player Name" class="player-name" onkeydown="enableStartButton()">
+        <div class="button-container">
+            <button id="btn-start" onclick="startGame()" disabled>Start</button>
+            <button onclick="hideLobbyLayout()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="countdown-container layout-container">
+    <div>
+        <h1></h1>
+    </div>
+</div>
+
+<div class="game-over-container layout-container">
+    <div>
+        <h1>GAME OVER</h1>
+        <div class="score"></div>
+        <div class="button-container">
+            <button onclick="playAgain()">Play Again</button>
+            <button onclick="showRanking()">View Ranking</button>
+            <button onclick="restart()">Main Menu</button>
+        </div>
+    </div>
+</div>
+
+<div class="rank-container layout-container">
+    <i class="fa-solid fa-xmark" onclick="showRanking(false)"></i>
+    <div>
+        <h1>ZUMA</h1>
+        <div class="description">Top 10 Ranking</div>
+        <table>
+            <thead>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
