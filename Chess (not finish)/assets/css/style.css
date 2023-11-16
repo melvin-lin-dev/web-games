@@ -10,6 +10,8 @@
     background-color: rgba(255, 255, 255, 0.5);
     transform: scale(0) translate(0);
 	overflow: hidden;
+    box-shadow: 0 2px 10px 5px #ccc;
+    border-radius: 12px;
 }
 
 canvas, .container {
@@ -25,7 +27,7 @@ canvas, .container {
     border-radius: 5px;
 }
 
-.gameover-container {
+.game-over-container {
     background-color: rgba(255, 255, 255, .5);
     height: 100%;
     width: 100%;
@@ -35,15 +37,40 @@ canvas, .container {
     left: 0;
 }
 
-.gameover-container > div {
+.game-over-container > div {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.gameover-container.active {
+.game-over-container h1{
+    font-size: 60px;
+}
+
+.game-over-container h5{
+    font-size: 20px;
+}
+
+.game-over-container.active {
     transform: scale(1);
+}
+
+.game-over-container button{
+    margin-top: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(70,70,70);
+    color: white;
+    border: 1px solid rgb(70,70,70);
+    transition-duration: .4s;
+    transition-property: background-color, color;
+    padding: 4px 12px;
+}
+
+.game-over-container button:hover{
+    background-color: white;
+    color: rgb(70,70,70);
 }
 
 .chess-pawn-select {

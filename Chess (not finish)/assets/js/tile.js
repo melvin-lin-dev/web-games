@@ -9,7 +9,7 @@ class Tile {
         this.dot = false;
         this.eatable = false;
 
-        this.check = false;
+        this.check = new Set();
         this.forbidKingMove = false;
 
         this.changePosition;
@@ -21,7 +21,7 @@ class Tile {
     draw() {
         ctx.save();
         let color = '';
-        if (this.check) {
+        if (this.check.size) {
             color = 'rgb(245,30,30)';
         } else if (this.eatable) {
             color = 'rgb(230,100,0)';

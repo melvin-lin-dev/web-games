@@ -25,7 +25,7 @@ function refreshBoard() {
 function drawPawn() {
     let chessPosition = [
         [2, 3, 4, 0, 1, 4, 3, 2],
-        // [5, 5, 5, 5, 5, 5, 5, 5]
+        [5, 5, 5, 5, 5, 5, 5, 5]
     ];
 
     for (let y = 0; y < chessPosition.length; y++) {
@@ -60,9 +60,9 @@ function drawPawn() {
             //     chessX = 2 * tileSize;
             //     x = 2;
             // }
-            if(chessType === 5){
-                continue;
-            }
+            // if(chessType === 5){
+            //     continue;
+            // }
             // if(chessType === 3 || chessType === 4 || chessType === 0){
             //     continue;
             // }
