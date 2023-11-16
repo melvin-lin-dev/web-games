@@ -51,12 +51,14 @@ function updateObject(){
 	})
 }
 
-function checkGameOver(){
-	let gameOver = false;
-
-	for(let y = 0; y < tileLength; y++){
-		for(let x = 0; x < tileLength; x++){
-
+function isCheckMate(){
+	if(isKingCheck()){
+		let checkMate = false;
+	
+		for(let y = 0; y < tileLength; y++){
+			for(let x = 0; x < tileLength; x++){
+				
+			}
 		}
 	}
 }

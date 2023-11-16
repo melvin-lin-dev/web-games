@@ -15,7 +15,7 @@ function refreshBoard() {
             tile.color = tileColor;
             tile.dot = false;
             tile.eatable = false;
-            // if (!tile.checkMate) tile.eatable = false;
+            // if (!tile.check) tile.eatable = false;
 
             selectedPawn = '';
         }
