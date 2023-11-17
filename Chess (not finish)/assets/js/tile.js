@@ -18,6 +18,14 @@ class Tile {
         this.friendProtection = false;
     }
 
+    addCheck(y, x, pawn) {
+        const pawnY = pawn.y / tileSize;
+        const pawnX = pawn.x / tileSize;
+        if(!gameBoard[y][x].check.has(pawnY + '|' + pawnX)){
+            gameBoard[y][x].check.add(pawnY + '|' + pawnX);
+        }
+    }
+
     draw() {
         ctx.save();
         let color = '';
