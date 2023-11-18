@@ -16,7 +16,7 @@ function getPosition(e){
 			if(theCell.flag) return false;
 
 			if(theCell.type == 'bee'){
-				gameOver = true;
+				gameOver = 'Lose';
 				return false;
 			}
 

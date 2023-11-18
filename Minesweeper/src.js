@@ -8,7 +8,7 @@ let bee = 15;
 
 let cellSize = cvs.width/size;
 
-let gameOver = false;
+let gameOver = null;
 
 window.onload = function(){
   start();
@@ -28,10 +28,15 @@ function update(){
   if(!gameOver){
     updateObject();
     drawGrid();
+    checkWin();
     requestAnimationFrame(update);
   }else{
     updateObject();
     drawGrid();
+    setTimeout(() => {
+      alert('Game Over! You ' + gameOver + '!');
+      location.reload();
+    })
   }
 }
 
@@ -103,4 +108,15 @@ function generateLine(){
   for(let key in cell){
     if(cell[key].type != 'bee') if(!cell[key].value) cell[key].generateLine();
   }
+}
+
+function checkWin(){
+  let countReveal = 0;
+  let countBee = 0;
+  for(let key in cell){
+    if(cell[key].type === 'number' && cell[key].reveal) countReveal++;
+    if(cell[key].type === 'bee') countBee++;
+  }
+
+  if(countReveal === size * size - countBee) gameOver = 'Win';
 }
