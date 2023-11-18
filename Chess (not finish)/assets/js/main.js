@@ -12,7 +12,9 @@ let turn = 'white';
 	
 let pawnSelectList = ['queen','rook','horse','bishop'];
 
-let checkMate = null;
+let gameOver = null;
+
+let consecutiveMoves = 0;
 
 window.onload = () => {
 	start();
@@ -31,7 +33,7 @@ function start(){
 }
 
 function update(){
-	if(!checkMate){
+	if(!gameOver){
 		ctx.clearRect(0, 0, cvs.width, cvs.height);
 
 		updateObject();
@@ -109,9 +111,37 @@ function isCheckMate(){
 
 	let kingChecks = isKingCheck();
 
-	console.log('checkmate', (kingChecks > 1 && !kingMoves), (kingChecks === 1 && !otherMoves), kingMoves, otherMoves, kingChecks);
+	// console.log('checkmate', (kingChecks > 1 && !kingMoves), (kingChecks === 1 && !otherMoves), kingMoves, otherMoves, kingChecks);
 
 	if((kingChecks > 1 && !kingMoves) || (kingChecks === 1 && !(kingMoves || otherMoves))){
-		checkMate = turn;
+		gameOver = turn;
+	}else{
+		isDraw();
+	}
+}
+
+function isDraw(){
+	const IS_FIFTY_MOVE_RULE = consecutiveMoves / 2 === 50;
+
+	const PIECES = {};
+	let piecesLeft = 0;
+	for(let y = 0; y < tileLength; y++){
+		for(let x = 0; x < tileLength; x++){
+			const pawn = pawns[y][x];
+			if(pawn){
+				piecesLeft++;
+				if(PIECES[pawn.type]){
+					PIECES[pawn.type]++;
+				}else{
+					PIECES[pawn.type] = 1;
+				}
+			}
+		}
+	}
+
+	const DRAW_PIECES = piecesLeft === 3 && (PIECES[3] === 1 || PIECES[4] === 1);
+	
+	if (IS_FIFTY_MOVE_RULE || DRAW_PIECES) {
+		gameOver = 'draw';
 	}
 }

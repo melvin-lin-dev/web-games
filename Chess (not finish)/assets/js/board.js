@@ -25,7 +25,7 @@ function refreshBoard() {
 function drawPawn() {
     let chessPosition = [
         [2, 3, 4, 0, 1, 4, 3, 2],
-        // [5, 5, 5, 5, 5, 5, 5, 5]
+        [5, 5, 5, 5, 5, 5, 5, 5]
     ];
 
     for (let y = 0; y < chessPosition.length; y++) {

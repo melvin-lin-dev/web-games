@@ -1,5 +1,5 @@
 -win/lose ?
--draw (repetition, 50 moves rule, )
+-draw (repetition, 50 moves rule, ) ?
 -pawn can't move if enemy pawn is threatening ?
 
 

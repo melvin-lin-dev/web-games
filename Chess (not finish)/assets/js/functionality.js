@@ -22,6 +22,14 @@ function pawnSelect(e) {
                     tile.color = 'yellow';
                     selectedPawn = {pawn, tile};
                 } else if (tile.dot || (tile.eatable && pawn.color !== turn)) {
+                    if (selectedPawn.pawn.type !== 'soldier' && tile.dot) {
+                        consecutiveMoves++;
+
+                        isDraw();
+                    } else {
+                        consecutiveMoves = 0;
+                    }
+
                     // checkKingMove();
                     pawns[selectedPawn.tile.y / tileSize][selectedPawn.tile.x / tileSize] = '';
 

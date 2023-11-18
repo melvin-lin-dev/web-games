@@ -38,9 +38,9 @@ class Tile {
         }
 
         // DEBUG
-        if(this.needProtection && !this.eatable){
-            color = 'purple';
-        }
+        // if(this.needProtection && !this.eatable){
+        //     color = 'purple';
+        // }
 
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, tileSize, tileSize);
