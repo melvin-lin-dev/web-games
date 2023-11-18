@@ -109,9 +109,9 @@ function isCheckMate(){
 
 	let kingChecks = isKingCheck();
 
-	// console.log('debug', (kingChecks > 1 && !kingMoves), (kingChecks === 1 && !otherMoves), kingMoves, otherMoves, kingChecks);
+	console.log('checkmate', (kingChecks > 1 && !kingMoves), (kingChecks === 1 && !otherMoves), kingMoves, otherMoves, kingChecks);
 
-	if((kingChecks > 1 && !kingMoves) || (kingChecks === 1 && !otherMoves)){
+	if((kingChecks > 1 && !kingMoves) || (kingChecks === 1 && !(kingMoves || otherMoves))){
 		checkMate = turn;
 	}
 }

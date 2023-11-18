@@ -14,7 +14,7 @@ function pawnSelect(e) {
 
             if (mouse.x < tile.x + tileSize && mouse.x >= tile.x &&
                 mouse.y < tile.y + tileSize && mouse.y >= tile.y) {
-                if (pawn && pawn.color === turn && canPawnMove(pawn)) {
+                if (pawn && pawn.color === turn) {
                     refreshBoard();
 
                     checkMove(pawn);
@@ -100,8 +100,8 @@ function checkMove(pawn) {
                         setTile('eatable', pawn, next);
 
                         if (pawn.type === 'king') {
-                            console.log('eatable cok');
-                            console.log(pawn);
+                            // console.log('eatable cok');
+                            // console.log(pawn);
                             checkKingMoves();
                         }
                         // gameBoard[next.y][next.x].eatable = true;
@@ -146,9 +146,14 @@ function checkMove(pawn) {
                         setTile('dot', pawn, next);
                         // console.log(next)
 
-                        if (!pawn.moved && !pawns[next.y + dir.y][next.x]) {
+                        const newNext = {
+                            y: next.y + dir.y,
+                            x: next.x
+                        }
+
+                        if (!pawn.moved && !pawns[newNext.y][newNext.x]) {
                             // console.log(next, dir.y)
-                            setTile('dot', pawn, {...next, y: next.y + dir.y});
+                            setTile('dot', pawn, newNext);
                         }
                     }
 
@@ -211,13 +216,27 @@ function checkMove(pawn) {
 }
 
 function setTile(type, pawn, obj) {
-    // console.log(isKingCheck(), gameBoard[obj.y][obj.x].needProtection, gameBoard[obj.y][obj.x].friendProtection)
-    if ((isKingCheck() && gameBoard[obj.y][obj.x].needProtection === turn && pawn.type !== 'king') || 
-        !isKingCheck() || (pawn.type === 'king' && !gameBoard[obj.y][obj.x].friendProtection)
-    ) {
-        // console.log(isKingCheck());
-        // console.log(isKingCheck(), gameBoard[obj.y][obj.x].friendProtection)
-        gameBoard[obj.y][obj.x][type] = true;
+    const ORIGINAL_PAWN_POS = {
+        x: pawn.x / tileSize,
+        y: pawn.y / tileSize
+    };
+    const CAN_ORIGINAL_PAWN_MOVE = canPawnMove(ORIGINAL_PAWN_POS);
+
+    const CAN_PAWN_MOVE = !canPawnMove(obj, ORIGINAL_PAWN_POS);
+
+    // console.log('tile debug', CAN_ORIGINAL_PAWN_MOVE, CAN_PAWN_MOVE)
+    
+    if (CAN_ORIGINAL_PAWN_MOVE || CAN_PAWN_MOVE) {
+        // console.log(obj.y, obj.x, gameBoard[obj.y][obj.x].needProtection, pawn.type, pawn.color, isKingCheck())
+        
+        if ((isKingCheck() && gameBoard[obj.y][obj.x].needProtection === turn && pawn.type !== 'king') || 
+            !isKingCheck() || (pawn.type === 'king' && !gameBoard[obj.y][obj.x].friendProtection)
+        ) {
+            // console.log('tes');
+            // console.log(isKingCheck());
+            // console.log(isKingCheck(), gameBoard[obj.y][obj.x].friendProtection)
+            gameBoard[obj.y][obj.x][type] = true;
+        }
     }
 }
 
@@ -228,18 +247,20 @@ function setTile(type, pawn, obj) {
 //     }
 // }
 
-function horseMove(nextNext, pawn, checkType = '', checkCheck) {
+function horseMove(nextNext, pawn, checkType = '', checkCheck = false) {
     if (nextNext.x >= 0 && nextNext.x < tileLength && nextNext.y >= 0 && nextNext.y < tileLength) {
         let nextNextPawn = pawns[nextNext.y][nextNext.x];
 
         if (checkType !== 'can_move') {
             if (nextNextPawn && nextNextPawn.color !== pawn.color) {
-                check(nextNextPawn);
+                // check(nextNextPawn);
     
-                if (checkType === 'check' && pawn.type === 'king') {
+                if (checkType === 'check' && nextNextPawn.type === 'king') {
+                    // alert('line: 257');
                     gameBoard[nextNext.y][nextNext.x].addCheck(nextNext.y, nextNext.x, pawn);
+                    gameBoard[pawn.y / tileSize][pawn.x / tileSize].needProtection = turn;
                 } else if (checkType === 'protection'){
-                    gameBoard[nextNext.y][nextNext.x].needProtection = true;
+                    // gameBoard[pawn.y / tileSize][pawn.x / tileSize].needProtection = true;
                 } else if (!checkCheck) {
                     setTile('eatable', pawn, nextNext);
                     // gameBoard[nextNext.y][nextNext.x].eatable = true;
@@ -282,7 +303,7 @@ function clearBoard(clearCheck = false) {
 
             if (clearCheck) {
                 tile.check = new Set();
-                tile.needProtection = false;
+                tile.needProtection = '';
             } else {
                 tile.dot = false;
                 tile.eatable = false;
@@ -339,6 +360,7 @@ function checkKingMove(pawn, checkCheck) {
                 if (pawn.type !== 'soldier') {
                     if (nextPawn && pawn.color !== nextPawn.color && nextPawn.type === 'king') {
                         gameBoard[next.y][next.x].addCheck(next.y, next.x, pawn);
+                        // console.log('debug', dir)
                         needProtection(nextPawn, pawn, dir);
                     } else if (pawn.color === nextPawn.color) {
                         gameBoard[next.y][next.x].friendProtection = true;
@@ -401,7 +423,9 @@ function checkKingMove(pawn, checkCheck) {
                             let nextNextPawn = pawns[nextNext.y][nextNext.x];
 
                             if (nextNextPawn && pawn.color !== nextNextPawn.color && pawn.type === 'king') {
-                                gameBoard[nextNext.y][nextNext.x]++;
+                                // gameBoard[nextNext.y][nextNext.x]++;
+                                // TODO
+                                gameBoard[nextNext.y][nextNext.x].addCheck(nextNext.y, nextNext.x, pawn);
                                 needProtection(nextNextPawn, pawn, dir);
                             } else if (pawn.color === nextNextPawn.color) {
                                 gameBoard[nextNext.y][nextNext.x].friendProtection = true;
@@ -509,19 +533,21 @@ function needProtection(king, pawn, dir) {
         y: king.y / tileSize + dir.y,
     };
 
-    let nextPawn;
+    // console.log('debug a', {...next}, dir)
 
     let checkWall = next.x >= 0 && next.x < tileLength && next.y >= 0 && next.y < tileLength;
 
     if (checkWall) {
-        nextPawn = pawns[next.y][next.x];
+        // let nextPawn = pawns[next.y][next.x];
 
         if (pawn.type !== 'horse') {
             if (pawn.type !== 'soldier') {
                 // console.log(next.y, next.x)
                 gameBoard[next.y][next.x].needProtection = king.color;
 
-                while (true) {
+                // const pawn = pawns[next.y][next.x];
+
+                while (!pawns[next.y][next.x]) {
                     let nextNext = {
                         x: next.x + dir.x,
                         y: next.y + dir.y,
@@ -540,6 +566,8 @@ function needProtection(king, pawn, dir) {
 
                         next.x = nextNext.x;
                         next.y = nextNext.y;
+
+                        // console.log('debug', nextNext.x, nextNext.y, next.x, next.y)
                     } else {
                         break;
                     }
@@ -566,46 +594,45 @@ function needProtection(king, pawn, dir) {
                 })
             }
         } else if (pawn.type === 'horse') {
-            next.x += dir.x;
-            next.y += dir.y;
+            // next.x += dir.x;
+            // next.y += dir.y;
 
-            checkWall = next.x >= 0 && next.x < tileLength && next.y >= 0 && next.y < tileLength;
+            // checkWall = next.x >= 0 && next.x < tileLength && next.y >= 0 && next.y < tileLength;
 
-            if (checkWall) {
-                if (dir.y) {
-                    horizontalDirection.forEach((horizontalDir) => {
-                        let nextNext = {
-                            x: horizontalDir[0] + next.x,
-                            y: horizontalDir[1] + next.y,
-                        };
+            // if (checkWall) {
+            //     if (dir.y) {
+            //         horizontalDirection.forEach((horizontalDir) => {
+            //             let nextNext = {
+            //                 x: horizontalDir[0] + next.x,
+            //                 y: horizontalDir[1] + next.y,
+            //             };
 
-                        horseMove(nextNext, pawn, 'protection', checkCheck);
-                    })
-                } else if (dir.x) {
-                    verticalDirection.forEach((verticalDir) => {
-                        let nextNext = {
-                            x: verticalDir[0] + next.x,
-                            y: verticalDir[1] + next.y,
-                        };
+            //             horseMove(nextNext, pawn, 'protection');
+            //         })
+            //     } else if (dir.x) {
+            //         verticalDirection.forEach((verticalDir) => {
+            //             let nextNext = {
+            //                 x: verticalDir[0] + next.x,
+            //                 y: verticalDir[1] + next.y,
+            //             };
 
-                        horseMove(nextNext, pawn, 'protection', checkCheck);
-                    })
-                }
-            }
+            //             horseMove(nextNext, pawn, 'protection');
+            //         })
+            //     }
+            // }
         }
     }
 }
 
-function canPawnMove(pawnException){
-    if (pawnException.color !== turn) return true;
-
+function canPawnMove(exceptionPos, originalPawnPos = ''){
     for (let y = 0; y < tileLength; y++) {
         for (let x = 0; x < tileLength; x++) {
             const pawn = pawns[y][x];
-            // if (pawn.color !== turn && pawn.type !== 'queen') continue; //debug
+            // if (pawn.color !== turn && pawn.type !== 'queen') continue; // DEBUG
             if (pawn && pawn.color !== turn) {
                 for(let j = 0; j < pawn.direction.length; j++){
                     const direction = pawn.direction[j];
+                    let pawnExceptionMeet = false;
 
                     let dir = {
                         x: direction[0],
@@ -620,29 +647,29 @@ function canPawnMove(pawnException){
                     let nextPawn;
             
                     let checkWall = next.x >= 0 && next.x < tileLength && next.y >= 0 && next.y < tileLength;
-            
+
                     if (checkWall) {
                         nextPawn = pawns[next.y][next.x];
             
                         if (pawn.type !== 'horse') {
                             if (pawn.type !== 'soldier') {
+                                // console.log('debug', next, exceptionPos, next.x === exceptionPos.x && next.y === exceptionPos.y)
+                                if(next.x === exceptionPos.x && next.y === exceptionPos.y){
+                                    // if (originalPawnPos) console.log('abc')
+                                    // console.log('debug', pawn.type, nextPawn.type, pawnException.type)
+                                    pawnExceptionMeet = true;
+                                }
+
+                                // if(originalPawnPos && nextPawn.color === turn && nextPawn.type === 'king') console.log('king bug', next.y, next.x, pawn.type, pawn.color)
+
+                                // && pawnExceptionMeet
                                 if (nextPawn && nextPawn.color === turn && nextPawn.type === 'king') {
+                                    if(originalPawnPos){
+                                        gameBoard[pawn.y / tileSize][pawn.x / tileSize].eatable = true;
+                                    }
+
                                     return false;
-                                    // check(nextPawn);
-            
-                                    // setTile('eatable', pawn, next);
-            
-                                    // if (pawn.type === 'king') {
-                                    //     checkKingMoves();
-                                    // }
-                                    // gameBoard[next.y][next.x].eatable = true;
                                 } else if (!nextPawn) {
-                                    // setTile('dot', pawn, next);
-            
-                                    // if (nextPawn.type === 'king') {
-                                    //     checkKingMoves();
-                                    // }
-            
                                     while (pawn.type !== 'king') {
                                         let nextNext = {
                                             x: next.x + dir.x,
@@ -652,25 +679,20 @@ function canPawnMove(pawnException){
                                         if (nextNext.x >= 0 && nextNext.x < tileLength && nextNext.y >= 0 && nextNext.y < tileLength) {
                                             let nextNextPawn = pawns[nextNext.y][nextNext.x];
 
-                                            console.log('abc')
+                                            if(nextNext.x === exceptionPos.x && nextNext.y === exceptionPos.y){
+                                                pawnExceptionMeet = true;
+                                            }
 
-
-                                            if (!nextNextPawn || nextNextPawn === pawnException) {
-                                                // setTile('dot', pawn, nextNext);
-            
+                                            if (!nextNextPawn || (nextNext.x === exceptionPos.x && nextNext.y === exceptionPos.y) || (nextNext.x === originalPawnPos.x && nextNext.y === originalPawnPos.y)) {
                                                 next.x = nextNext.x;
                                                 next.y = nextNext.y;
-                                            } else if (nextNextPawn.color === turn && nextNextPawn.type === 'king') {
-
-                                                console.log('bbb', next.y, next.x)
-                                                // check(nextNextPawn);
-                                                
-                                                // gameBoard[nextNext.y][nextNext.x].eatable = true;
-                                                // setTile('eatable', pawn, nextNext);
+                                            } else if (nextNextPawn.color === turn && nextNextPawn.type === 'king' && pawnExceptionMeet) {
+                                                if(originalPawnPos){
+                                                    gameBoard[pawn.y / tileSize][pawn.x / tileSize].eatable = true;
+                                                }
 
                                                 return false;
                                             } else {
-                                                console.log('zzz', next.y, next.x)
                                                 break;
                                             }
                                         } else {
@@ -679,16 +701,6 @@ function canPawnMove(pawnException){
                                     }
                                 }
                             } else {
-                                // if (!nextPawn) {
-                                //     setTile('dot', pawn, next);
-                                //     // console.log(next)
-            
-                                //     if (!pawn.moved && !pawns[next.y + dir.y][next.x]) {
-                                //         // console.log(next, dir.y)
-                                //         setTile('dot', pawn, {...next, y: next.y + dir.y});
-                                //     }
-                                // }
-            
                                 horizontalDirection.forEach((horizontalDir) => {
                                     let nextNext = {
                                         x: horizontalDir[0] + next.x,
@@ -698,11 +710,7 @@ function canPawnMove(pawnException){
                                     let nextNextPawn = pawns[nextNext.y][nextNext.x];
             
                                     if (nextNext.x >= 0 && nextNext.x < tileLength && nextNext.y >= 0 && nextNext.y < tileLength && nextNextPawn && nextNextPawn.color === turn && nextNextPawn.type === 'king') {
-                                        // check(nextNextPawn);
-            
-                                        // setTile('eatable', pawn, nextNext);
                                         return false;
-                                        // gameBoard[nextNext.y][nextNext.x].eatable = true;
                                     }
                                 })
                             }
@@ -741,7 +749,6 @@ function canPawnMove(pawnException){
             }
         }
     }
-    console.log('tes')
     return true;
 }
 

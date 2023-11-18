@@ -25,7 +25,7 @@ function refreshBoard() {
 function drawPawn() {
     let chessPosition = [
         [2, 3, 4, 0, 1, 4, 3, 2],
-        [5, 5, 5, 5, 5, 5, 5, 5]
+        // [5, 5, 5, 5, 5, 5, 5, 5]
     ];
 
     for (let y = 0; y < chessPosition.length; y++) {
@@ -71,4 +71,12 @@ function drawPawn() {
             pawns[newY][x] = new Pawn(chessX, chessY, chessType, chessColor);
         }
     }
+
+    // QUEEN SAVE
+    // pawns[6][3] = new Pawn(3 * tileSize, 6 * tileSize, 0, 1);
+    // pawns[7][3] = new Pawn(3 * tileSize, 7 * tileSize, 1, 1);
+    // pawns[7][4] = '';
+
+    // HORSE CHECKMATE/NEED PROTECTION
+    // pawns[2][4] = new Pawn(4 * tileSize, 2 * tileSize, 3, 1);
 }
