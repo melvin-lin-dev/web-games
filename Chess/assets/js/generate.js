@@ -20,7 +20,6 @@ function generatePawnSelectList() {
         let typeNumber = type === 'queen' ? index : index + 1;
 
         let imageContainer = document.createElement('div');
-        // console.log(-size * index);
         imageContainer.style.backgroundPosition = `${-size * typeNumber}px ${-size * (turn === 'white')}px`;
         imageContainer.style.height = `${size}px`;
         imageContainer.style.width = `${size}px`;

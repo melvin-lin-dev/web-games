@@ -24,9 +24,8 @@ function refreshBoard() {
 
 function drawPawn() {
     let chessPosition = [
-        // [2, 3, 4, 0, 1, 4, 3, 2],
-        [5, 5, 5, 5, 1, 5, 5, 5],
-        // [5, 5, 5, 5, 5, 5, 5, 5]
+        [2, 3, 4, 0, 1, 4, 3, 2],
+        [5, 5, 5, 5, 5, 5, 5, 5]
     ];
 
     for (let y = 0; y < chessPosition.length; y++) {
@@ -40,34 +39,13 @@ function drawPawn() {
         }
     }
 
-    // let tempChessPosition = [0];
-    // chessPosition[0] = chessPosition[1];
-    // chessPosition[1] = tempChessPosition;
-
     for (let y = chessPosition.length - 1; y >= 0; y--) {
-        // console.log(y);
         for (let x = chessPosition[y].length - 1; x >= 0; x--) {
             let newY = tileLength - y - 1;
             let chessX = x * tileSize;
             let chessY = newY * tileSize;
             let chessType = chessPosition[y][x];
             let chessColor = 1;
-            //
-            // if(x === 3 && chessType === 5){
-            //     // continue;
-            //     chessType = 3;
-            //     newY = 2;
-            //     chessY = newY * tileSize;
-            //     chessX = 2 * tileSize;
-            //     x = 2;
-            // }
-            // if(chessType === 5){
-            //     continue;
-            // }
-            // if(chessType === 3 || chessType === 4 || chessType === 0){
-            //     continue;
-            // }
-            //
 
             pawns[newY][x] = new Pawn(chessX, chessY, chessType, chessColor);
         }

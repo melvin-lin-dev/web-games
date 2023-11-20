@@ -119,8 +119,6 @@ function isCheckMate(){
 
 	let kingChecks = isKingCheck();
 
-	console.log('checkmate', (kingChecks > 1 && !kingMoves), (kingChecks === 1 && !otherMoves), kingMoves, otherMoves, kingChecks);
-
 	if((kingChecks > 1 && !kingMoves) || (kingChecks === 1 && !(kingMoves || otherMoves))){
 		gameOver = 'Checkmate';
 	}else if(kingChecks === 0 && kingMoves === 0 && otherMoves === 0){
