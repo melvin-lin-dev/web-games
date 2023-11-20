@@ -24,8 +24,9 @@ function refreshBoard() {
 
 function drawPawn() {
     let chessPosition = [
-        [2, 3, 4, 0, 1, 4, 3, 2],
-        [5, 5, 5, 5, 5, 5, 5, 5]
+        // [2, 3, 4, 0, 1, 4, 3, 2],
+        [5, 5, 5, 5, 1, 5, 5, 5],
+        // [5, 5, 5, 5, 5, 5, 5, 5]
     ];
 
     for (let y = 0; y < chessPosition.length; y++) {
@@ -79,4 +80,17 @@ function drawPawn() {
 
     // HORSE CHECKMATE/NEED PROTECTION
     // pawns[2][4] = new Pawn(4 * tileSize, 2 * tileSize, 3, 1);
+
+    // STALEMATE CHECK
+    pawns[2][3] = new Pawn(3 * tileSize, 2 * tileSize, 0, 1);
+    pawns[2][6] = new Pawn(6 * tileSize, 2 * tileSize, 0, 1);
+    pawns[1][0] = new Pawn(0 * tileSize, 1 * tileSize, 2, 1);
+
+    pawns[0][0] = '';
+    pawns[0][1] = '';
+    pawns[0][2] = '';
+    pawns[0][3] = '';
+    pawns[0][5] = '';
+    pawns[0][6] = '';
+    pawns[0][7] = '';
 }

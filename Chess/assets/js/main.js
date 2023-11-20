@@ -45,8 +45,16 @@ function update(){
 		updateObject();
 
 		const gameOverContainerEl = document.querySelector('.game-over-container');
+		const h1El = gameOverContainerEl.querySelector('h1');
+		const winnerEl = gameOverContainerEl.querySelector('#winner');
 
-		gameOverContainerEl.querySelector('#winner').innerHTML = turn === 'white' ? 'black' : 'white';
+		if (gameOver === 'Checkmate') {
+			h1El.innerHTML = gameOver + ' ' + turn;
+			winnerEl.innerHTML = turn === 'white' ? 'black' : 'white';
+		} else {
+			h1El.innerHTML = gameOver;
+			winnerEl.parentNode.style.display = 'none';
+		}
 
 		gameOverContainerEl.classList.add('active');
 	}
@@ -111,10 +119,12 @@ function isCheckMate(){
 
 	let kingChecks = isKingCheck();
 
-	// console.log('checkmate', (kingChecks > 1 && !kingMoves), (kingChecks === 1 && !otherMoves), kingMoves, otherMoves, kingChecks);
+	console.log('checkmate', (kingChecks > 1 && !kingMoves), (kingChecks === 1 && !otherMoves), kingMoves, otherMoves, kingChecks);
 
 	if((kingChecks > 1 && !kingMoves) || (kingChecks === 1 && !(kingMoves || otherMoves))){
-		gameOver = turn;
+		gameOver = 'Checkmate';
+	}else if(kingChecks === 0 && kingMoves === 0 && otherMoves === 0){
+		gameOver = 'Stalemate';
 	}else{
 		isDraw();
 	}
@@ -141,7 +151,11 @@ function isDraw(){
 
 	const DRAW_PIECES = piecesLeft === 3 && (PIECES[3] === 1 || PIECES[4] === 1);
 	
-	if (IS_FIFTY_MOVE_RULE || DRAW_PIECES) {
-		gameOver = 'draw';
+	if (IS_FIFTY_MOVE_RULE) {
+		gameOver = 'Draw by Fifty-Move Rule';
+	}
+
+	if(DRAW_PIECES){
+		gameOver = 'Draw'
 	}
 }
