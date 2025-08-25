@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Meta -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Title -->
+
+    <title>Star Battle</title>
+
+    <!-- Icon -->
+
+    <link rel="icon" href="./assets/logo-01.png">
+
+    <!-- Style -->
+    <link href="https://fonts.googleapis.com/css?family=Monda|Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+
+<div class="loader">
+    <div class="loader-overlay">
+        <div class="loader-item"></div>
+    </div>
+    <div class="loader-text">
+        Loading...
+    </div>
+</div>
+
+<div id="zone_joystick"></div>
+
+
+<!-- Container -->
+
+
+<div class="container">
+
+    <!-- Instructions -->
+
+    <div id="instructions" class="absolute text-center">
+        <img src="./assets/logo-01.png" alt="Star Battle Logo" class="logo">
+        <!--        <button class="btn start-game-btn" data-god="true">God Mode</button>-->
+        <button class="btn start-game-btn">Start Game</button>
+    </div>
+
+    <!-- Ranking -->
+
+    <div id="ranking" class="absolute text-center hide">
+        <img src="./assets/logo-01.png" alt="Star Battle Logo" class="logo">
+        <h2 class="title">Leaderboard</h2>
+
+        <div class="table-overlay">
+            <table>
+                <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Time</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="table-overlay">
+            <table class="table-rank">
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <button class="btn start-game-btn">Start Game</button>
+    </div>
+
+    <!-- Score Form -->
+
+    <form id="scoreForm" class="absolute text-center hide" style="z-index: 2">
+        <h1 class="title">Game Over</h1>
+        <h2 class="title">Your Score: <span class="score-text">0</span></h2>
+        <div class="flex">
+            <input type="text" name="name" class="input" placeholder="Name">
+            <button type="submit" class="btn continue-btn" disabled>Continue</button>
+        </div>
+    </form>
+
+    <!-- Game Board -->
+
+    <div id="gameBoard" class="absolute full-width full-height hide">
+
+        <div id="shop" class="absolute shop-container">
+            <div class="menu top">
+                <div class="content-menu">
+                </div>
+            </div>
+
+            <div class="main-container">
+                <div class="inspect stats"></div>
+                <div class="inspect equipment"></div>
+
+                <img class="plane" src="assets/plane_.png" alt="Plane">
+
+                <div class="coins">
+                    <img src="assets/coin.png" alt="Coin Icon">
+                    <span></span>
+                    <div class="bought-effects"></div>
+                </div>
+                <div class="notification">Insufficient Money</div>
+            </div>
+
+            <div class="menu bottom">
+                <div class="content-menu"></div>
+            </div>
+
+            <img src="./assets/exit.png" alt="shop-time" class="exit-shop">
+        </div>
+
+        <!-- Enter Zone -->
+
+        <div class="enter-zone">
+            <img src="assets/door.svg" alt="enter-zone" style="width: 100%;height: 100%">
+        </div>
+
+
+        <!-- Menu and Stats -->
+
+        <div id="gameMenu" class="absolute">
+            <div class="absolute absolute-left">
+                <!--                <img src="./assets/pause.png" alt="pause" class="pause">-->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="btn-menu pause">
+                    <path
+                        d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/>
+                </svg>
+                <!--                <img src="./assets/sound.png" alt="sound" class="sound">-->
+            </div>
+            <div class="absolute absolute-right text-center stat-overlay">
+                <img src="./assets/shopTime.png" alt="shop-time" class="shop-time">
+                <span class="shopTime-text">0</span>
+                <img src="./assets/time.png" alt="time" class="time">
+                <span class="time-text">0</span>
+                <img src="./assets/logo-01.png" alt="logo" class="logo">
+                <span class="score-text">0</span>
+                <img src="./assets/score.png" alt="score" class="score">
+                <span class="coins-text">0</span>
+                <img src="./assets/coins.png" alt="coin" class="coin">
+            </div>
+        </div>
+
+        <div class="game-control game-shoot" style="background-image: url('./assets/shoot-icon.svg')"></div>
+        <!--<div class="game-control game-shoot">-->
+        <!--<img src="assets/shoot-icon.svg" alt="shoot-icon" style="width: 100%;height: 100%;">-->
+        <!--</div>-->
+        <div class="game-control game-invisible" style="background-image: url('./assets/invisible-icon.svg');">
+            <div class="cooldown">
+                <svg class="progress-circle__svg invisible-btn">
+                    <circle class="progress-circle__stroke" r="50%" cx="50%" cy="50%"></circle>
+                    <circle class="progress-circle__stroke invisible-cooldown-percentage" r="50%" cx="50%"
+                            cy="50%"></circle>
+                </svg>
+<!--                <img src="assets/invisible-icon.svg" alt="invisible-icon"-->
+<!--                     class="progress-circle__stroke invisible-icon invisible-btn">-->
+            </div>
+        </div>
+        <div class="game-combo"></div>
+
+        <!-- Boss Health -->
+
+        <div id="bossHealth" class="hide">
+            <img src="./assets/enemy4.svg" alt="Fuel Icon" class="boss-icon">
+            <div id="bossHp"></div>
+        </div>
+
+        <!-- Fuel Counter -->
+
+        <div id="fuelCounter">
+            <img src="./assets/fuel.png" alt="Fuel Icon" class="fuel-icon">
+            <div id="fuel">15</div>
+        </div>
+
+        <!-- Canvas -->
+
+        <div class="collide-animation"></div>
+        <canvas id="canvas" class="opacity-5"></canvas>
+    </div>
+</div>
+
+<div class="fixed-center level-info text-center"></div>
+
+<div class="modal modal-hide setting">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-center title modal-title">Settings</h2>
+            </div>
+            <div class="modal-body">
+                <div class="flex">
+                    <label for="inputSound" class="input-row">
+                        <span>Sound</span>
+                        <span class="custom-checkbox">
+                            <input type="checkbox" id="inputSound" class="input-checkbox">
+                            <span></span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-close-settings">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./jquery-3.2.1.min.js"></script>
+<script src="./nipplejs.js"></script>
+<script src="./instructions.js"></script>
+<script src="./Level.js"></script>
+<script src="./Boss.js"></script>
+<script src="./Particle.js"></script>
+<script src="./Planet.js"></script>
+<script src="./Enemy.js"></script>
+<script src="./ShopShip.js"></script>
+<script src="./Fuel.js"></script>
+<script src="./Friend.js"></script>
+<script src="./Bullet.js"></script>
+<script src="./Player.js"></script>
+<script src="./Shop.js"></script>
+<script src="./Game.js"></script>
+<script src="./Loader.js"></script>
+<script src="./Main.js"></script>
+<script src="./Event.js"></script>
+<script src="./Equipment.js"></script>
+
+</body>
+</html>
