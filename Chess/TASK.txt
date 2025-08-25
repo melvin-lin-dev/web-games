@@ -1,8 +1,0 @@
--win/lose ?
--draw (repetition, 50 moves rule, ) ?
--pawn can't move if enemy pawn is threatening ?
-
-
-bugs:
-1. Horse check instant checkmate
-2. Handle can pawn move ?
