@@ -5,19 +5,19 @@ This repo showcases both completed games and prototypes/unfinished projects for 
 
 ## 🏆 Completed / Playable Games
 
-| Game                | Description                                   | Tech Stack          | Notes                                                                                             |
-| ------------------- | --------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------- |
-| **2048**            | Sliding tile number-merging puzzle game.      | Vanilla JS          | Fully playable                                                                                    |
-| **Jewel Crush**     | Match-3 puzzle with cascading combos.         | Vanilla JS          | Fully playable                                                                                    |
-| **Hit n Dodge**     | Avoid obstacles while striking targets.       | Node.js, Vanilla JS | Playable; includes multiplayer mode.                                                              |
-| **Hitting Ball**    | Break bricks using a bouncing ball.           | Vanilla JS          | Simple physics; fully playable.                                                                   |
-| **Minesweeper**     | Classic grid-based mine-clearing puzzle.      | Vanilla JS          | Fully playable                                                                                    |
-| **Othello**         | Two-player disc-flipping strategy game.       | Vanilla JS          | Fully playable                                                                                    |
-| **Pipe**            | Connect pipes to complete a water flow path.  | Vanilla JS          | Fully playable but contains minor bugs (e.g., multiple win alerts, unsolvable puzzle generation). |
-| **Snake**           | Guide a growing snake to eat and survive.     | Vanilla JS          | Fully playable                                                                                    |
-| **Star Battle ASC** | Space shooter featuring multiple levels.      | Vanilla JS, jQuery  | Fully playable                                                                                    |
-| **Tetris**          | Falling block alignment puzzle game.          | Vanilla JS          | Fully playable                                                                                    |
-| **Zuma**            | Marble shooter with chain-clearing mechanics. | Node.js, Vanilla JS | Playable; includes separate single-player and multiplayer versions.                               |
+| Game             | Description                                                                | Tech Stack          | Notes                                                                                             |
+| ---------------- | -------------------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------------------------------------- |
+| **2048**         | Sliding tile number-merging puzzle game.                                   | Vanilla JS          | Fully playable                                                                                    |
+| **Jewel Crush**  | Match-3 puzzle with cascading combos.                                      | Vanilla JS          | Fully playable                                                                                    |
+| **Hit n Dodge**  | Avoid obstacles while striking targets.                                    | Node.js, Vanilla JS | Playable; includes multiplayer mode.                                                              |
+| **Hitting Ball** | Break bricks using a bouncing ball.                                        | Vanilla JS          | Simple physics; fully playable.                                                                   |
+| **Minesweeper**  | Classic grid-based mine-clearing puzzle.                                   | Vanilla JS          | Fully playable                                                                                    |
+| **Othello**      | Two-player disc-flipping strategy game.                                    | Vanilla JS          | Fully playable                                                                                    |
+| **Pipe**         | Connect pipes to complete a water flow path.                               | Vanilla JS          | Fully playable but contains minor bugs (e.g., multiple win alerts, unsolvable puzzle generation). |
+| **Snake**        | Guide a growing snake to eat and survive.                                  | Vanilla JS          | Fully playable                                                                                    |
+| **Star Battle**  | Space shooter with gasoline, shop, money system, scoring, and boss fights. | Vanilla JS, jQuery  | Fully playable on mobile                                                                          |
+| **Tetris**       | Falling block alignment puzzle game.                                       | Vanilla JS          | Fully playable                                                                                    |
+| **Zuma**         | Marble shooter with chain-clearing mechanics.                              | Node.js, Vanilla JS | Playable; includes separate single-player and multiplayer versions.                               |
 
 ## ⚠️ Unfinished / Prototype Games (might be discontinued)
 
@@ -51,3 +51,7 @@ These may include:
 -   Finished games are playable and include working logic.
 -   Unfinished games are kept for experimentation and learning purposes.
 -   Feedback is welcome, but active development is not guaranteed.
+
+## 🏅 Awards & Recognition
+
+-   **Star Battle** – Best Student Project (HAGO Award, Three-person team)
