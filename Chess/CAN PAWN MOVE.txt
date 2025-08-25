@@ -1,3 +1,0 @@
-canPawnMove:
-1. jika ketemu, maka jangan gerak | jika dot ketemu, maka boleh bergerak = CAN_ORIGINAL_PAWN_MOVE || CAN_PAWN_MOVE
-2. jika tidak ketemu, maka boleh gerak | jika 
