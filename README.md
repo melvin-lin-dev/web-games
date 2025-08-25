@@ -19,8 +19,6 @@ This repo showcases both completed games and prototypes/unfinished projects for 
 | **Tetris**          | Falling block alignment puzzle game.          | Vanilla JS          | Fully playable                                                                                    |
 | **Zuma**            | Marble shooter with chain-clearing mechanics. | Node.js, Vanilla JS | Playable; includes separate single-player and multiplayer versions.                               |
 
----
-
 ## ⚠️ Unfinished / Prototype Games (might be discontinued)
 
 | Game             | Description                                   | Tech Stack          | Status           | Notes                                                                                                                     |
