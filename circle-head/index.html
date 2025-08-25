@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CircleHead</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <canvas></canvas>
+
+    <div class="instruction-container">
+        <div>
+            <h1>CircleHead</h1>
+
+            <ul>
+                <li>1. Blue circle is player and red circle is zombie</li>
+                <li>2. Aim with your cursor</li>
+                <li>3. Use W, A, S and D to move</li>
+                <li>4. Press space or click the game to shoot</li>
+            </ul>
+
+            <button onclick="start()" data-content="Start Game" class="btn btn-start-game"></button>
+        </div>
+
+        <h2 class="count-down"></h2>
+    </div>
+
+    <div class="game-over-container">
+        <div>
+            <h1>GAMEOVER</h1>
+            <h3>Score: <span id="final-score"></span></h3>
+            <button class="btn btn-game-over" data-content="Restart" onclick="reset()"></button>
+        </div>
+    </div>
+
+<!--    <h1 class="next-wave"></h1>-->
+</div>
+
+<script src="js/variable.js"></script>
+<script src="js/main.js"></script>
+<script src="js/player.js"></script>
+<script src="js/zombie.js"></script>
+<script src="js/window.js"></script>
+<script src="js/update.js"></script>
+<script src="js/generate.js"></script>
+<script src="js/helper.js"></script>
+<script src="js/bullet.js"></script>
+<script src="js/draw.js"></script>
+<script src="js/particle.js"></script>
+</body>
+</html>
