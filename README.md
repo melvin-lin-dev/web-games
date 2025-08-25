@@ -3,8 +3,6 @@
 A collection of browser-based games built with HTML, CSS, JavaScript, Node.js, and PHP.  
 This repo showcases both completed games and prototypes/unfinished projects for experimentation.
 
----
-
 ## 🏆 Completed / Playable Games
 
 | Game                | Description                                   | Tech Stack          | Notes                                                                                             |
@@ -36,8 +34,6 @@ This repo showcases both completed games and prototypes/unfinished projects for 
 | **RPG**          | Role-playing game with editable world map.    | Vanilla JS, PHP     | Prototype        | Features: walking (terrain-based), map editor (CRUD in PHP); database not connected, so editor not viewable.              |
 | **Sky-Jump**     | Vertical scrolling jumping game.              | Vanilla JS          | Prototype        | Experimental; includes jumping and upward map movement logic.                                                             |
 
----
-
 ## 🗄️ Archives
 
 Older versions of projects are stored here for reference and preservation.  
@@ -47,14 +43,10 @@ These may include:
 -   Pre-refactor code versions.
 -   Deprecated experiments.
 
----
-
 ## ⚙️ Tech Stack
 
 -   **Frontend:** HTML, CSS, JavaScript, jQuery
 -   **Backend:** Node.js, PHP
-
----
 
 ## 📌 Notes
 
