@@ -1,3 +1,4 @@
 [submodule "middle-space"]
 	path = middle-space
 	url = https://github.com/melvin-lin-dev/middle-space.git
+	branch = master
