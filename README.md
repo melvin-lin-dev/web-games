@@ -5,7 +5,7 @@ This repo showcases both completed games and prototypes/unfinished projects for 
 
 ## 🌟 Project Highlights
 
--   **Star Battle** – Best Student Project (HAGO Award, Three-person team)
+-   **Middle Space** – Best Student Project (HAGO Award, Three-person team)
 -   **Hit n Dodge** – Multiplayer mechanics fully implemented.
 -   **Zuma** – Single-player & multiplayer versions available.
 
@@ -26,7 +26,7 @@ This repo showcases both completed games and prototypes/unfinished projects for 
 | **Othello**      | Two-player disc-flipping strategy game.                                                     | Vanilla JS          | Fully playable                                                                                    |
 | **Pipe**         | Connect pipes to complete a water flow path.                                                | Vanilla JS          | Fully playable but contains minor bugs (e.g., multiple win alerts, unsolvable puzzle generation). |
 | **Snake**        | Guide a growing snake to eat and survive.                                                   | Vanilla JS          | Fully playable                                                                                    |
-| **Star Battle**  | Space shooter with gasoline, shop, money system, scoring, and boss fights.                  | Vanilla JS, jQuery  | Fully playable on mobile                                                                          |
+| **Middle Space** | Space shooter with gasoline, shop, money system, scoring, and boss fights.                  | Vanilla JS, jQuery  | Fully playable on mobile                                                                          |
 | **Tetris**       | Falling block alignment puzzle game.                                                        | Vanilla JS          | Fully playable                                                                                    |
 | **Zuma**         | Marble shooter with chain-clearing mechanics.                                               | Node.js, Vanilla JS | Playable; includes separate single-player and multiplayer versions.                               |
 | **Circle Head**  | Arena survival shooter; fight endless waves, defeat boss at wave 5, and aim for high score. | Vanilla JS          | Fully playable                                                                                    |
@@ -66,7 +66,7 @@ These may include:
 
 ## 🏅 Awards & Recognition
 
--   **Star Battle** – Best Student Project (HAGO Award, Three-person team) [View Award](https://drive.google.com/file/d/1BSrLce1KSpspMU7FzRGodKFLMzOEurMq/view)
+-   **Middle Space** – Best Student Project (HAGO Award, Three-person team) [View Award](https://drive.google.com/file/d/1BSrLce1KSpspMU7FzRGodKFLMzOEurMq/view)
 
 ## 📂 Missing / Unavailable Projects
 
